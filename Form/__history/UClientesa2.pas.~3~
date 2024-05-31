@@ -1,0 +1,31 @@
+unit UClientesa2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Menus;
+
+type
+  TfmClientesa2 = class(TForm)
+    MainMenu1: TMainMenu;
+    Incluir1: TMenuItem;
+    Modificar1: TMenuItem;
+    Guardar1: TMenuItem;
+    Cancelar1: TMenuItem;
+    Salir1: TMenuItem;
+    Panel1: TPanel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmClientesa2: TfmClientesa2;
+
+implementation
+
+{$R *.dfm}
+
+end.

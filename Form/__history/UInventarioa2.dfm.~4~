@@ -1,0 +1,191 @@
+object fmInventario: TfmInventario
+  Left = -8
+  Top = -8
+  Caption = 'Inventario a2'
+  ClientHeight = 708
+  ClientWidth = 1366
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 656
+    Top = 144
+    Width = 89
+    Height = 97
+    Caption = 'Label1'
+  end
+  object DBLookupComboBoxDpto: TDBLookupComboBox
+    Left = 20
+    Top = 77
+    Width = 221
+    Height = 21
+    KeyField = 'FD_CODIGO'
+    ListField = 'FD_DESCRIPCION'
+    ListSource = DsDptoa2
+    TabOrder = 0
+    OnClick = DBLookupComboBoxDptoClick
+  end
+  object DBGridSinventarioa2: TDBGrid
+    Left = 20
+    Top = 104
+    Width = 557
+    Height = 337
+    DataSource = DsSinventarioa2
+    ParentShowHint = False
+    ReadOnly = True
+    ShowHint = False
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        ButtonStyle = cbsEllipsis
+        Expanded = False
+        FieldName = 'FI_CODIGO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FI_DESCRIPCION'
+        Title.Caption = 'Descripcion de Productos / Servicios'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FI_CAPACIDAD'
+        Title.Caption = 'Cantidad'
+        Visible = True
+      end>
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 1369
+    Height = 33
+    TabOrder = 2
+    object Button1: TButton
+      Left = 1294
+      Top = 2
+      Width = 75
+      Height = 31
+      Caption = 'Salir'
+      TabOrder = 0
+      OnClick = Button1Click
+    end
+  end
+  object DBLookupComboBox1: TDBLookupComboBox
+    Left = 776
+    Top = 77
+    Width = 209
+    Height = 21
+    KeyField = 'codigo'
+    ListField = 'descr'
+    ListSource = DataSource1
+    TabOrder = 3
+    OnClick = DBLookupComboBox1Click
+  end
+  object DBGrid1: TDBGrid
+    Left = 776
+    Top = 104
+    Width = 557
+    Height = 337
+    DataSource = DataSource2
+    TabOrder = 4
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'codigo'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'descr'
+        Width = 294
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'precio'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'grupo'
+        Visible = True
+      end>
+  end
+  object DbiTabDptoa2: TDBISAMTable
+    Active = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    TableName = 'Scategoria'
+    Left = 248
+    Top = 64
+  end
+  object DsDptoa2: TDataSource
+    DataSet = DbiTabDptoa2
+    Left = 304
+    Top = 64
+  end
+  object DbiTabSinventarioa2: TDBISAMTable
+    Active = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    TableName = 'Sinventario'
+    Left = 56
+    Top = 392
+  end
+  object DsSinventarioa2: TDataSource
+    DataSet = DbiTabSinventarioa2
+    Left = 152
+    Top = 392
+  end
+  object ADOTable1: TADOTable
+    Active = True
+    ConnectionString = 
+      'Provider=VFPOLEDB.1;Data Source=C:\Retail_Shop\Data;Password="";' +
+      'Collating Sequence=MACHINE'
+    CursorType = ctStatic
+    TableName = 'gruinv'
+    Left = 1016
+    Top = 56
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOTable1
+    Left = 1096
+    Top = 56
+  end
+  object ADOTable2: TADOTable
+    Active = True
+    ConnectionString = 
+      'Provider=VFPOLEDB.1;Data Source=C:\Retail_Shop\Data;Password="";' +
+      'Collating Sequence=MACHINE'
+    CursorType = ctStatic
+    Filter = 'grupo=0003'
+    Filtered = True
+    TableName = 'inven'
+    Left = 800
+    Top = 392
+  end
+  object DataSource2: TDataSource
+    DataSet = ADOTable2
+    Left = 872
+    Top = 392
+  end
+end

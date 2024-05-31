@@ -1,0 +1,53 @@
+unit UInventarioa2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, Data.DB, dbisamtb,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfmInventario = class(TForm)
+    DBLookupComboBoxDpto: TDBLookupComboBox;
+    DbiTabDpto: TDBISAMTable;
+    DsDpto: TDataSource;
+    DBGrid1: TDBGrid;
+    DbiTabSinventario: TDBISAMTable;
+    DsSinventario: TDataSource;
+    Panel1: TPanel;
+    Button1: TButton;
+    procedure DBLookupComboBoxDptoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmInventarioa2: TfmInventarioa2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfmInventarioa2.Button1Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TfmInventarioa2.DBLookupComboBoxDptoClick(Sender: TObject);
+begin
+fmInventario.DbiTabSinventario.Filtered:=FALSE;
+fmInventario.DbiTabSinventario.Filter:= 'FI_CATEGORIA = ' + QuotedStr(fmInventario.DbiTabDpto.FieldByName('FD_codigo').AsString);
+fmInventario.DbiTabSinventario.Filtered:=TRUE;
+end;
+
+procedure TfmInventarioa2.FormCreate(Sender: TObject);
+begin
+   close;
+end;
+
+end.

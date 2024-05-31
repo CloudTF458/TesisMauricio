@@ -1,0 +1,18 @@
+program a2Pos;
+
+uses
+  Vcl.Forms,
+  UPrincipal in '..\Form\UPrincipal.pas' {fmPrincipal},
+  UDepartamentos in '..\Form\UDepartamentos.pas' {fmDepartamentos},
+  UInventarioa2 in '..\Form\UInventarioa2.pas' {fmInventario};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfmPrincipal, fmPrincipal);
+  Application.CreateForm(TfmDepartamentos, fmDepartamentos);
+  Application.CreateForm(TfmInventario, fmInventario);
+  Application.Run;
+end.

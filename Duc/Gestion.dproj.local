@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2007/01/01 13:54:17.000.059,C:\Desarrollos\PONS\Form\UInventario.pas=C:\Desarrollos\PONS\Form\UInventarioa2.pas</Transaction>
+    <Transaction>2007/01/01 13:54:17.000.059,C:\Desarrollos\PONS\Form\UInventario.dfm=C:\Desarrollos\PONS\Form\UInventarioa2.dfm</Transaction>
+    <Transaction>2007/01/01 14:15:08.000.286,=C:\Desarrollos\PONS\Duc\Unit1.pas</Transaction>
+    <Transaction>2007/01/01 14:16:14.000.690,C:\Desarrollos\PONS\Duc\Unit1.pas=C:\Desarrollos\PONS\Form\UClientesa2.pas</Transaction>
+    <Transaction>2007/01/01 14:16:14.000.690,C:\Desarrollos\PONS\Duc\Unit1.dfm=C:\Desarrollos\PONS\Form\UClientesa2.dfm</Transaction>
+    <Transaction>2007/01/01 16:54:11.000.908,=C:\Desarrollos\PONS\Duc\Unit1.pas</Transaction>
+    <Transaction>2007/01/01 17:55:33.000.923,C:\Desarrollos\PONS\Form\Ucuentasxcobrar.pas=C:\Desarrollos\PONS\Duc\Unit1.pas</Transaction>
+    <Transaction>2007/01/01 17:55:33.000.923,C:\Desarrollos\PONS\Form\Ucuentasxcobrar.dfm=C:\Desarrollos\PONS\Duc\Unit1.dfm</Transaction>
+    <Transaction>2007/01/02 10:19:55.000.760,=C:\Desarrollos\PONS\Duc\Unit1.pas</Transaction>
+    <Transaction>2007/01/02 10:22:50.000.600,C:\Desarrollos\PONS\Duc\Unit1.dfm=C:\Desarrollos\PONS\Form\UQuery.dfm</Transaction>
+    <Transaction>2007/01/02 10:22:50.000.600,C:\Desarrollos\PONS\Duc\Unit1.pas=C:\Desarrollos\PONS\Form\UQuery.pas</Transaction>
+    <Transaction>2015/11/05 08:52:05.000.493,=C:\Users\personal\Documents\RAD Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2015/11/05 09:07:00.000.434,C:\Users\personal\Documents\RAD Studio\Projects\Unit1.pas=C:\Desarrollos\PONS\Form\UPrincipal.pas</Transaction>
+    <Transaction>2015/11/05 09:07:00.000.434,C:\Users\personal\Documents\RAD Studio\Projects\Unit1.dfm=C:\Desarrollos\PONS\Form\UPrincipal.dfm</Transaction>
+    <Transaction>2015/11/05 09:07:46.000.965,C:\Users\personal\Documents\RAD Studio\Projects\Project1.dproj=C:\Desarrollos\PONS\Duc\a2Pos.dproj</Transaction>
+    <Transaction>2015/11/05 09:08:03.000.355,=C:\Desarrollos\PONS\Duc\Unit1.pas</Transaction>
+    <Transaction>2015/11/05 09:08:59.000.400,C:\Desarrollos\PONS\Duc\Unit1.dfm=C:\Desarrollos\PONS\Form\UDepartamentos.dfm</Transaction>
+    <Transaction>2015/11/05 09:08:59.000.400,C:\Desarrollos\PONS\Duc\Unit1.pas=C:\Desarrollos\PONS\Form\UDepartamentos.pas</Transaction>
+    <Transaction>2015/11/05 10:42:59.000.874,=C:\Desarrollos\PONS\Duc\Unit1.pas</Transaction>
+    <Transaction>2015/11/05 10:46:59.000.346,C:\Desarrollos\PONS\Duc\Unit1.pas=C:\Desarrollos\PONS\Form\UInventario.pas</Transaction>
+    <Transaction>2015/11/05 10:46:59.000.346,C:\Desarrollos\PONS\Duc\Unit1.dfm=C:\Desarrollos\PONS\Form\UInventario.dfm</Transaction>
+    <Transaction>2024/05/15 16:52:10.000.720,F:\Desarrollo\Proyecto-A\Duc\Gestion.dproj=F:\Desarrollo\Proyecto-A\Duc\a2Pos.dproj</Transaction>
+    <Transaction>2024/05/15 16:52:45.000.847,F:\Desarrollo\Proyecto-A\Duc\Gestion.dproj=F:\Desarrollo\Proyecto-A\Duc\Gestion.dproj</Transaction>
+    <Transaction>2024/05/15 16:56:44.000.417,=F:\Desarrollo\Proyecto-A\Form\uAcceso.pas</Transaction>
+    <Transaction>2024/05/24 15:54:20.000.265,Z:\Desarrollo\Proyecto-A\Duc\Gestion.dproj=Z:\Desarrollo\Proyecto-A\Duc\Gestion.dproj</Transaction>
+    <Transaction>2024/05/26 15:31:05.980,=Z:\Desarrollo\Proyecto-A\Duc\Unit2.pas</Transaction>
+    <Transaction>2024/05/26 15:32:16.424,Z:\Desarrollo\Proyecto-A\Form\UbuscaClientes.dfm=Z:\Desarrollo\Proyecto-A\Duc\Unit2.dfm</Transaction>
+    <Transaction>2024/05/26 15:32:16.424,Z:\Desarrollo\Proyecto-A\Form\UbuscaClientes.pas=Z:\Desarrollo\Proyecto-A\Duc\Unit2.pas</Transaction>
+    <Transaction>2024/05/26 15:37:25.590,Z:\Desarrollo\Proyecto-A\Form\UbuscaClientes.pas=</Transaction>
+    <Transaction>2024/05/26 15:38:25.273,=Z:\Desarrollo\Proyecto-A\Duc\Unit2.pas</Transaction>
+    <Transaction>2024/05/26 15:39:34.061,Z:\Desarrollo\Proyecto-A\Form\UBuscarClientes.dfm=Z:\Desarrollo\Proyecto-A\Duc\Unit2.dfm</Transaction>
+    <Transaction>2024/05/26 15:39:34.061,Z:\Desarrollo\Proyecto-A\Form\UBuscarClientes.pas=Z:\Desarrollo\Proyecto-A\Duc\Unit2.pas</Transaction>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\Proyecto-A"/>
+    <File Path="..\Form"/>
+    <File Path="..\Form\uAcceso.pas"/>
+    <File Path="..\Form\uAcceso.dfm"/>
+    <File Path="..\Form\UClientesa2.pas"/>
+    <File Path="..\Form\UClientesa2.dfm"/>
+    <File Path="..\Form\Ucuentasxcobrar.pas"/>
+    <File Path="..\Form\Ucuentasxcobrar.dfm"/>
+    <File Path="..\Form\UDepartamentos.pas"/>
+    <File Path="..\Form\UDepartamentos.dfm"/>
+    <File Path="..\Form\UInventarioa2.pas"/>
+    <File Path="..\Form\UInventarioa2.dfm"/>
+    <File Path="..\Form\UPrincipal.pas"/>
+    <File Path="..\Form\UPrincipal.dfm"/>
+    <File Path="..\Form\UQuery.pas"/>
+    <File Path="..\Form\UQuery.dfm"/>
+    <File Path="..\Form\UBuscarClientes.pas"/>
+    <File Path="..\Form\UBuscarClientes.dfm"/>
+  </ProjectSortOrder>
+</BorlandProject>

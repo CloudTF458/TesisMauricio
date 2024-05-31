@@ -1,0 +1,62 @@
+unit UQuery;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
+  Data.DB, dbisamtb, Vcl.Menus, Vcl.PlatformDefaultStyleActnCtrls,
+  Vcl.ActnPopup, Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    DBGrid1: TDBGrid;
+    DBISAMQuery1: TDBISAMQuery;
+    DataSource1: TDataSource;
+    DBGrid2: TDBGrid;
+    Button2: TButton;
+    Splitter1: TSplitter;
+    Splitter2: TSplitter;
+    PopupActionBar1: TPopupActionBar;
+    QuequieresHacer1: TMenuItem;
+    Llamaatuasesor1: TMenuItem;
+    ConpagarunhoraloSolucionas1: TMenuItem;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Llamaatuasesor1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+//Las Setencias de SQL no son las mismas sentencias ANSI, debe tener en cuenta
+dbisamQuery1.SQL.Clear      ;
+DBISAMQuery1.SQL.Add('Select * from Sclientes');
+DBISAMQuery1.ExecSQL;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+DbisamQuery1.SQL.Clear;
+DbisamQuery1.SQL.Add('Select Sinventario.Fi_codigo, FI_Descripcion from Sinventario ');
+DbisamQuery1.ExecSql;
+//DbisamQuery1.SQL.
+end;
+
+procedure TForm1.Llamaatuasesor1Click(Sender: TObject);
+begin
+showmessage('Este es el Numero 0414-4313368');
+end;
+
+end.

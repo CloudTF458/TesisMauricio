@@ -1,0 +1,552 @@
+object fmcxc: Tfmcxc
+  Left = 245
+  Top = 185
+  Caption = 'Cuentas por Cobrar'
+  ClientHeight = 561
+  ClientWidth = 930
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 24
+    Width = 393
+    Height = 161
+    DataSource = DataSource1
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'FC_RIF'
+        Width = 81
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FC_DESCRIPCION'
+        Width = 277
+        Visible = True
+      end>
+  end
+  object DBGrid2: TDBGrid
+    Left = 8
+    Top = 207
+    Width = 545
+    Height = 120
+    DataSource = DataSource2
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'FTI_DOCUMENTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FTI_FECHAEMISION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FTI_TOTALITEMS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FTI_TOTALBRUTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FTI_SALDOOPERACION'
+        Width = 136
+        Visible = True
+      end>
+  end
+  object DBGrid3: TDBGrid
+    Left = 8
+    Top = 352
+    Width = 1350
+    Height = 289
+    DataSource = DataSource3
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'FDI_TIPOOPERACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_CODIGO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_LINEA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DOCUMENTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_CLIENTEPROVEEDOR'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DOCUMENTOORIGEN'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_LINEAORIGEN'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_CLASIFICACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_STATUS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_VISIBLE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COSTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_CANTIDAD'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_CANTIDADPENDIENTE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_LOTE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_LOTERANDOM'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_NEWLOTE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DEPOSITOSOURCE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DEPOSITOTARGET'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_OPERACION_AUTOINCREMENT'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DECIMALES'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DECIMALESPEN'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_SERIALNUMBER'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_USASERIALES'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_USADEPOSITOS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COSTOOPERACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_MEMODETALLE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_MONEDA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_FACTORCAMBIO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DETALLECOSTOSIMPORTACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DETALLEPLANILLAIMPORTACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_EXISTEDETALLEIMPORTACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_EXISTEDETALLEDECOSTOS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_ALICUOTAFLETEOTROS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_IMPUESTO1'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PORCENTIMPUESTO1'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_MONTOIMPUESTO1'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_IMPUESTO2'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PORCENTIMPUESTO2'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_MONTOIMPUESTO2'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_ORIGENPRICE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PORCENTDESCPARCIAL'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DESCUENTOPARCIAL'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PRECIOSINDESCUENTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PRECIOCONDESCUENTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PRECIODEVENTA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_ROUNDDESCTPARCIAL'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COMISIONFIJA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COMISIONFIJAP'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_UNDDESCARGA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_UNDCAPACIDAD'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_UNDDETALLADA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_INDEXPRICES'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PARTESUSANSERIALES'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COSTODEVENTAS'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DESCRIPCIONOFERTA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_VENDEDORASIGNADO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_MONTOCOMISION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PRECIOBASECOMISION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COMISIONBLOQUEADA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COMISIONYAPAGADA'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_DOCUMENTOLIBERACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_TIPODECOMISION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PRICEFORCOMISION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_FECHAOPERACION'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_USER'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PORCENTDESCUENTO1'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PORCENTDESCUENTO2'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COSTOSUPDATE'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'BASE_AUTOINCREMENT'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_TOTALPESO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_CTOCOSTO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_AUTORIZADO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_MARKPERIODO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_CTOCOSTOSTR'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COSTOACTUALNACIONAL'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COSTOACTUALEXT'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_PREFIXINVENTARIO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_COSTOAJUSTADO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_FECHALIBRO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_MONTOLIQUIDADO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_TIPODOCUMENTOORIGEN'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FDI_STATUSDOCUMENTOORIGEN'
+        Visible = True
+      end>
+  end
+  object DBISAMTable1: TDBISAMTable
+    Active = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    ReadOnly = True
+    TableName = 'Sclientes'
+    Left = 376
+    Top = 80
+  end
+  object DataSource1: TDataSource
+    DataSet = DBISAMTable1
+    Left = 376
+    Top = 136
+  end
+  object DBISAMTable2: TDBISAMTable
+    Active = True
+    AutoDisplayLabels = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    IndexFieldNames = 'FTI_AUTOINCREMENT'
+    MasterFields = 'FC_CODIGO'
+    MasterSource = DataSource1
+    ReadOnly = True
+    TableName = 'SOperacionInv'
+    Left = 488
+    Top = 224
+  end
+  object DataSource2: TDataSource
+    DataSet = DBISAMTable2
+    Left = 488
+    Top = 280
+  end
+  object DBISAMTable3: TDBISAMTable
+    Active = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    ReadOnly = True
+    TableName = 'SDetalleVenta'
+    Left = 616
+    Top = 424
+  end
+  object DataSource3: TDataSource
+    DataSet = DBISAMTable3
+    Left = 688
+    Top = 424
+  end
+end

@@ -1,0 +1,85 @@
+object fmDepartamentos: TfmDepartamentos
+  Left = 421
+  Top = 232
+  Caption = 'Departamentos a2'
+  ClientHeight = 191
+  ClientWidth = 505
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = mnMenuDpto
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 505
+    Height = 49
+    TabOrder = 0
+    object Button1: TButton
+      Left = 0
+      Top = 0
+      Width = 81
+      Height = 49
+      Caption = 'Agregar'
+      TabOrder = 0
+    end
+    object Button2: TButton
+      Left = 80
+      Top = 0
+      Width = 81
+      Height = 49
+      Caption = 'Modificar'
+      TabOrder = 1
+    end
+  end
+  object DBEdit1: TDBEdit
+    Left = 40
+    Top = 64
+    Width = 121
+    Height = 21
+    DataField = 'FD_CODIGO'
+    DataSource = DSscategoria
+    TabOrder = 1
+  end
+  object DBEdit2: TDBEdit
+    Left = 40
+    Top = 91
+    Width = 273
+    Height = 21
+    DataField = 'FD_DESCRIPCION'
+    DataSource = DSscategoria
+    TabOrder = 2
+  end
+  object mnMenuDpto: TMainMenu
+    Left = 448
+    Top = 56
+    object Agregar1: TMenuItem
+      Caption = 'Detalles'
+    end
+    object Modificar1: TMenuItem
+      Caption = 'Buscar'
+    end
+    object Buscar1: TMenuItem
+      Caption = 'Mantenimiento'
+    end
+  end
+  object DbitabScategoria: TDBISAMTable
+    Active = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    IndexFieldNames = 'FD_CODIGO'
+    TableName = 'Scategoria'
+    Left = 448
+    Top = 112
+  end
+  object DSscategoria: TDataSource
+    DataSet = DbitabScategoria
+    Left = 448
+    Top = 160
+  end
+end

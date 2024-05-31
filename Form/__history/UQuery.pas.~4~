@@ -1,0 +1,49 @@
+unit UQuery;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls,
+  Data.DB, dbisamtb;
+
+type
+  TForm1 = class(TForm)
+    Button1: TButton;
+    DBGrid1: TDBGrid;
+    DBISAMQuery1: TDBISAMQuery;
+    DataSource1: TDataSource;
+    DBGrid2: TDBGrid;
+    Button2: TButton;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+//Las Setencias de SQL no son las mismas sentencias ANSI, debe tener en cuenta
+dbisamQuery1.SQL.Clear      ;
+DBISAMQuery1.SQL.Add('Select * from Sclientes');
+DBISAMQuery1.ExecSQL;
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+begin
+DbisamQuery1.SQL.Clear;
+DbisamQuery1.SQL.Add('Select * from soperacionesinv ');
+DbisamQuery1.ExecSql;
+
+end;
+
+end.

@@ -1,0 +1,36 @@
+unit UDepartamentos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Data.DB, dbisamtb, Vcl.Menus, Vcl.ExtCtrls;
+
+type
+  TfmDepartamentos = class(TForm)
+    Panel1: TPanel;
+    mnMenuDpto: TMainMenu;
+    Agregar1: TMenuItem;
+    Modificar1: TMenuItem;
+    Buscar1: TMenuItem;
+    Button1: TButton;
+    Button2: TButton;
+    DbitabScategoria: TDBISAMTable;
+    DSscategoria: TDataSource;
+    DBEdit1: TDBEdit;
+    DBEdit2: TDBEdit;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmDepartamentos: TfmDepartamentos;
+
+implementation
+
+{$R *.dfm}
+
+end.

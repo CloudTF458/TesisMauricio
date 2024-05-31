@@ -1,0 +1,66 @@
+object fmPrincipal: TfmPrincipal
+  Left = 592
+  Top = 228
+  Caption = 'Proyecto Tesis de Grado'
+  ClientHeight = 502
+  ClientWidth = 1026
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  Position = poDesigned
+  WindowState = wsMaximized
+  TextHeight = 13
+  object MainMenu1: TMainMenu
+    Left = 16
+    Top = 72
+    object Menu11: TMenuItem
+      Caption = 'Administrativo'
+      object Configuracion1: TMenuItem
+        Caption = 'Clientes'
+      end
+      object Opciones1: TMenuItem
+        Caption = 'Proveedores'
+      end
+      object cnicos1: TMenuItem
+        Caption = 'T'#233'cnicos'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Salir1: TMenuItem
+        Caption = 'Salir'
+      end
+    end
+    object Menu21: TMenuItem
+      Caption = 'Productos'
+      object Inventario1: TMenuItem
+        Caption = 'Inventario'
+      end
+    end
+    object Menu31: TMenuItem
+      Caption = 'Transacciones'
+      object Contratos1: TMenuItem
+        Caption = 'Contratos'
+      end
+      object GestiondeAlquiles1: TMenuItem
+        Caption = 'Gestion de Alquiles'
+      end
+    end
+    object Menu41: TMenuItem
+      Caption = 'Configuraci'#243'n'
+      object Acercade1: TMenuItem
+        Caption = 'Acerca de..'
+      end
+    end
+    object Reportes1: TMenuItem
+      Caption = 'Reportes'
+      object Detalle1: TMenuItem
+        Caption = 'Resumen de Alquileres'
+      end
+    end
+  end
+end

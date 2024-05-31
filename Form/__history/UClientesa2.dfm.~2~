@@ -1,0 +1,43 @@
+object fmClientesa2: TfmClientesa2
+  Left = 129
+  Top = 178
+  Caption = 'Clientes en a2'
+  ClientHeight = 444
+  ClientWidth = 912
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 913
+    Height = 41
+    TabOrder = 0
+  end
+  object MainMenu1: TMainMenu
+    Left = 600
+    Top = 168
+    object Incluir1: TMenuItem
+      Caption = 'Incluir'
+    end
+    object Modificar1: TMenuItem
+      Caption = 'Modificar'
+    end
+    object Guardar1: TMenuItem
+      Caption = 'Guardar'
+    end
+    object Cancelar1: TMenuItem
+      Caption = 'Cancelar'
+    end
+    object Salir1: TMenuItem
+      Caption = 'Salir'
+    end
+  end
+end

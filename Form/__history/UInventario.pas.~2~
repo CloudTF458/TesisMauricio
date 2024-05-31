@@ -1,0 +1,27 @@
+unit UInventario;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, Data.DB, dbisamtb;
+
+type
+  TfmInventario = class(TForm)
+    DBLookupComboBoxDpto: TDBLookupComboBox;
+    DbiTabDpto: TDBISAMTable;
+    DsDpto: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmInventario: TfmInventario;
+
+implementation
+
+{$R *.dfm}
+
+end.

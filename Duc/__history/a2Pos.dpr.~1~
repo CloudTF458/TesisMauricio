@@ -1,0 +1,14 @@
+program a2Pos;
+
+uses
+  Vcl.Forms,
+  UPrincipal in '..\Form\UPrincipal.pas' {fmPrincipal};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfmPrincipal, fmPrincipal);
+  Application.Run;
+end.

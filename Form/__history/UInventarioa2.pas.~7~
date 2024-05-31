@@ -1,0 +1,69 @@
+unit UInventarioa2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, Data.DB, dbisamtb,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Data.Win.ADODB;
+
+type
+  TfmInventario = class(TForm)
+    DBLookupComboBoxDpto: TDBLookupComboBox;
+    DbiTabDptoa2: TDBISAMTable;
+    DsDptoa2: TDataSource;
+    DBGridSinventarioa2: TDBGrid;
+    DbiTabSinventarioa2: TDBISAMTable;
+    DsSinventarioa2: TDataSource;
+    Panel1: TPanel;
+    Button1: TButton;
+    ADOTable1: TADOTable;
+    codigo: TDataSource;
+    DBLookupComboBox1: TDBLookupComboBox;
+    DBGrid1: TDBGrid;
+    ADOTable2: TADOTable;
+    DataSource2: TDataSource;
+    btTransferir: TButton;
+    procedure DBLookupComboBoxDptoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure DBLookupComboBox1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmInventario: TfmInventario;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfmInventario.Button1Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TfmInventario.DBLookupComboBox1Click(Sender: TObject);
+begin
+//fmInventario.Label1.Caption := fmInventario.ADOTable1.FieldByName('codigo').AsString;
+fmInventario.ADOTable2.Filtered:=FALSE;
+fmInventario.ADOTable2.Filter:= 'grupo = ' + fmInventario.ADOTable1.FieldByName('codigo').AsString;
+fmInventario.ADOTable2.filtered:=TRUE;
+end;
+
+procedure TfmInventario.DBLookupComboBoxDptoClick(Sender: TObject);
+begin
+fmInventario.DbiTabSinventarioa2.Filtered:=FALSE;
+fmInventario.DbiTabSinventarioa2.Filter:= 'FI_CATEGORIA = ' + QuotedStr(fmInventario.DbiTabDptoa2.FieldByName('FD_codigo').AsString);
+fmInventario.DbiTabSinventarioa2.Filtered:=TRUE;
+end;
+
+procedure TfmInventario.FormCreate(Sender: TObject);
+begin
+   close;
+end;
+
+end.

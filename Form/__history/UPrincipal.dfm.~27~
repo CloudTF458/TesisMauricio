@@ -1,0 +1,88 @@
+object fmPrincipal: TfmPrincipal
+  Left = 592
+  Top = 228
+  Caption = 'Proyecto Tesis de Grado'
+  ClientHeight = 502
+  ClientWidth = 1026
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Menu = MainMenu1
+  Position = poDesigned
+  WindowState = wsMaximized
+  TextHeight = 13
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 1026
+    Height = 89
+    ButtonHeight = 73
+    ButtonWidth = 89
+    Caption = 'ToolBar1'
+    TabOrder = 0
+    object ToolButton1: TToolButton
+      AlignWithMargins = True
+      Left = 0
+      Top = 0
+      Caption = 'ToolButton1'
+      EnableDropdown = True
+      Grouped = True
+      ImageIndex = 0
+      ParentShowHint = False
+      Wrap = True
+      ShowHint = True
+    end
+  end
+  object MainMenu1: TMainMenu
+    Left = 904
+    Top = 440
+    object Menu11: TMenuItem
+      Caption = 'Administrativo'
+      object Configuracion1: TMenuItem
+        Caption = 'Clientes'
+      end
+      object Opciones1: TMenuItem
+        Caption = 'Proveedores'
+      end
+      object cnicos1: TMenuItem
+        Caption = 'T'#233'cnicos'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Salir1: TMenuItem
+        Caption = 'Salir'
+      end
+    end
+    object Menu21: TMenuItem
+      Caption = 'Productos'
+      object Inventario1: TMenuItem
+        Caption = 'Inventario'
+      end
+    end
+    object Menu31: TMenuItem
+      Caption = 'Transacciones'
+      object Contratos1: TMenuItem
+        Caption = 'Contratos'
+      end
+      object GestiondeAlquiles1: TMenuItem
+        Caption = 'Gestion de Alquiles'
+      end
+    end
+    object Menu41: TMenuItem
+      Caption = 'Configuraci'#243'n'
+      object Acercade1: TMenuItem
+        Caption = 'Acerca de..'
+      end
+    end
+    object Reportes1: TMenuItem
+      Caption = 'Reportes'
+      object Detalle1: TMenuItem
+        Caption = 'Resumen de Alquileres'
+      end
+    end
+  end
+end

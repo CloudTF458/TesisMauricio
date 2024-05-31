@@ -1,0 +1,61 @@
+object fmClientesa2: TfmClientesa2
+  Left = 368
+  Top = 187
+  Caption = 'Clientes'
+  ClientHeight = 695
+  ClientWidth = 1243
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  Position = poDesigned
+  StyleName = 'Luna'
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 8
+    Top = 51
+    Width = 101
+    Height = 16
+    Caption = 'Buscar Cliente :'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 1243
+    Height = 21
+    AutoSize = True
+    ButtonHeight = 21
+    ButtonWidth = 46
+    Caption = 'ToolBar1'
+    ShowCaptions = True
+    TabOrder = 0
+    ExplicitWidth = 1105
+    object ToolButton1: TToolButton
+      Left = 0
+      Top = 0
+      Caption = 'Guardar'
+      ImageIndex = 0
+    end
+  end
+  object DBLookupListBox1: TDBLookupListBox
+    Left = 115
+    Top = 43
+    Width = 478
+    Height = 36
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+  end
+end

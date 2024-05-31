@@ -1,0 +1,89 @@
+object fmInventario: TfmInventario
+  Left = -8
+  Top = -8
+  Caption = 'Inventario a2'
+  ClientHeight = 708
+  ClientWidth = 1366
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object DBLookupComboBoxDpto: TDBLookupComboBox
+    Left = 16
+    Top = 88
+    Width = 145
+    Height = 21
+    KeyField = 'FD_CODIGO'
+    ListField = 'FD_DESCRIPCION'
+    ListSource = DsDpto
+    TabOrder = 0
+    OnClick = DBLookupComboBoxDptoClick
+  end
+  object DBGrid1: TDBGrid
+    Left = 16
+    Top = 144
+    Width = 697
+    Height = 513
+    DataSource = DsSinventario
+    TabOrder = 1
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'FI_CODIGO'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FI_DESCRIPCION'
+        Title.Caption = 'Descripcion de Productos / Servicios'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FI_CAPACIDAD'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'FI_DESCRIPCIONDETALLADA'
+        Visible = True
+      end>
+  end
+  object DbiTabDpto: TDBISAMTable
+    Active = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    TableName = 'Scategoria'
+    Left = 248
+    Top = 24
+  end
+  object DsDpto: TDataSource
+    DataSet = DbiTabDpto
+    Left = 296
+    Top = 24
+  end
+  object DbiTabSinventario: TDBISAMTable
+    Active = True
+    DatabaseName = 'a2Data'
+    EngineVersion = '4.31 Build 3'
+    TableName = 'Sinventario'
+    Left = 56
+    Top = 576
+  end
+  object DsSinventario: TDataSource
+    DataSet = DbiTabSinventario
+    Left = 120
+    Top = 576
+  end
+end
