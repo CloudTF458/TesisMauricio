@@ -4,22 +4,40 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.DBCtrls, Data.DB, dbisamtb,
-  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList,
+  Vcl.ImgList, Vcl.ComCtrls, Vcl.ToolWin, UBuscarInventarios,
+  UModificarInventarios;
 
 type
   TfmInventario = class(TForm)
-    DBLookupComboBoxDpto: TDBLookupComboBox;
-    DbiTabDpto: TDBISAMTable;
-    DsDpto: TDataSource;
-    DBGrid1: TDBGrid;
-    DbiTabSinventario: TDBISAMTable;
-    DsSinventario: TDataSource;
-    Panel1: TPanel;
-    Button1: TButton;
-    procedure DBLookupComboBoxDptoClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    ToolBar1: TToolBar;
+    btBuscarClientes: TToolButton;
+    btAgregarInventario: TToolButton;
+    btModificarInventario: TToolButton;
+    btGuardarInventario: TToolButton;
+    btCancelarInventario: TToolButton;
+    btBorrarInventario: TToolButton;
+    btSalirInventario: TToolButton;
+    ImagInventarioLista: TImageList;
+    MainMenu1: TMainMenu;
+    Menu1: TMenuItem;
+    Buscar1: TMenuItem;
+    Agregar1: TMenuItem;
+    Modificar1: TMenuItem;
+    Guardar1: TMenuItem;
+    Cancelar1: TMenuItem;
+    Borrar1: TMenuItem;
+    N1: TMenuItem;
+    Salir1: TMenuItem;
+    Consultar1: TMenuItem;
+    EstadodeCuenta1: TMenuItem;
+    OperacionesComerciales1: TMenuItem;
+    ProductosComprados1: TMenuItem;
+    Configuraciones1: TMenuItem;
+    erceros1: TMenuItem;
+    procedure btSalirInventarioClick(Sender: TObject);
+    procedure btBuscarClientesClick(Sender: TObject);
+    procedure btModificarInventarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -33,21 +51,19 @@ implementation
 
 {$R *.dfm}
 
-procedure TfmInventario.Button1Click(Sender: TObject);
+procedure TfmInventario.btBuscarClientesClick(Sender: TObject);
 begin
-close;
+  fmBuscarProductos.ShowModal;
 end;
 
-procedure TfmInventario.DBLookupComboBoxDptoClick(Sender: TObject);
+procedure TfmInventario.btModificarInventarioClick(Sender: TObject);
 begin
-fmInventario.DbiTabSinventario.Filtered:=FALSE;
-fmInventario.DbiTabSinventario.Filter:= 'FI_CATEGORIA = ' + QuotedStr(fmInventario.DbiTabDpto.FieldByName('FD_codigo').AsString);
-fmInventario.DbiTabSinventario.Filtered:=TRUE;
+fmModificarInventarios.ShowModal;
 end;
 
-procedure TfmInventario.FormCreate(Sender: TObject);
+procedure TfmInventario.btSalirInventarioClick(Sender: TObject);
 begin
-   close;
+Close;
 end;
 
 end.

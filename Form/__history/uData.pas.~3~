@@ -1,0 +1,28 @@
+unit uData;
+
+interface
+
+uses
+  System.SysUtils, System.Classes, Data.DB, dbisamtb, Datasnap.Provider;
+
+type
+  TDataModule1 = class(TDataModule)
+    a2ConexionData: TDBISAMDatabase;
+    a2Sclientes: TDBISAMTable;
+    a2DataSet: TDataSetProvider;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DataModule1: TDataModule1;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

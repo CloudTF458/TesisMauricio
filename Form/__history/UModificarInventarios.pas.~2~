@@ -1,0 +1,40 @@
+unit UModificarInventarios;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList,
+  Vcl.ImgList, Vcl.Grids, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ActnMan,
+  Vcl.ActnCtrls, Vcl.ToolWin;
+
+type
+  TfmModificarInventario = class(TForm)
+    ToolBar1: TToolBar;
+    btOrdenarClientes: TToolButton;
+    ToolButton2: TToolButton;
+    ActionToolBar1: TActionToolBar;
+    edModificarClientes: TEdit;
+    lbModificarClientes: TLinkLabel;
+    StatusBar1: TStatusBar;
+    StringGrid1: TStringGrid;
+    ImagModificarClientes: TImageList;
+    MenuOrdenarLista: TPopupMenu;
+    Nombre1: TMenuItem;
+    Documento1: TMenuItem;
+    Contacto1: TMenuItem;
+    Ciudad1: TMenuItem;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmModificarInventario: TfmModificarInventario;
+
+implementation
+
+{$R *.dfm}
+
+end.

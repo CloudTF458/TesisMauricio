@@ -1,0 +1,39 @@
+program Gestion;
+
+uses
+  Vcl.Forms,
+  UPrincipal in '..\Form\UPrincipal.pas' {fmPrincipal},
+  UClientesa2 in '..\Form\UClientesa2.pas' {fmClientesa2},
+  uAcceso in '..\Form\uAcceso.pas' {fmAcceso},
+  Vcl.Themes,
+  Vcl.Styles,
+  UBuscarClientes in '..\Form\UBuscarClientes.pas' {fmBuscarClientes},
+  UModificarClientes in '..\Form\UModificarClientes.pas' {fmModificarClientes},
+  UProveedores in '..\Form\UProveedores.pas' {fmProveedores},
+  UTecnicos in '..\Form\UTecnicos.pas' {fmTecnicos},
+  UInventario in '..\Form\UInventario.pas' {fmInventario},
+  uData in '..\Form\uData.pas' {DataModule1: TDataModule},
+  UArrendamientos in '..\Form\UArrendamientos.pas' {fmArrendamientos},
+  UBuscarInventarios in '..\Form\UBuscarInventarios.pas' {fmBuscarProductos},
+  UModificarInventarios in '..\Form\UModificarInventarios.pas' {fmModificarInventario};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  TStyleManager.TrySetStyle('Silver');
+  Application.CreateForm(TfmPrincipal, fmPrincipal);
+  Application.CreateForm(TfmClientesa2, fmClientesa2);
+  Application.CreateForm(TfmAcceso, fmAcceso);
+  Application.CreateForm(TfmProveedores, fmProveedores);
+  Application.CreateForm(TfmBuscarClientes, fmBuscarClientes);
+  Application.CreateForm(TfmModificarClientes, fmModificarClientes);
+  Application.CreateForm(TfmTecnicos, fmTecnicos);
+  Application.CreateForm(TfmInventario, fmInventario);
+  Application.CreateForm(TDataModule1, DataModule1);
+  Application.CreateForm(TfmArrendamientos, fmArrendamientos);
+  Application.CreateForm(TfmBuscarProductos, fmBuscarProductos);
+  Application.CreateForm(TfmModificarInventario, fmModificarInventario);
+  Application.Run;
+end.

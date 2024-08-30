@@ -7,9 +7,6 @@ Coordinates=96,1,126,36
 [Inventario1]
 Coordinates=77,55,78,36
 
-[MainMenu1]
-Coordinates=260,1,81,36
-
 [Salir1]
 Coordinates=28,55,48,36
 
@@ -49,4 +46,7 @@ Coordinates=281,203,74,36
 []
 Coordinates=104,10,67,36
 Visible=False
+
+[MenuPrincipal]
+Coordinates=260,1,81,36
 

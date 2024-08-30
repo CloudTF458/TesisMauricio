@@ -1,0 +1,24 @@
+object DataModule1: TDataModule1
+  Height = 688
+  Width = 1209
+  object a2ConexionData: TDBISAMDatabase
+    EngineVersion = '4.43 Build 1'
+    DatabaseName = 'a2Database'
+    Directory = 'Z:\Desarrollo\a2AppProyecto\HAC\a2Softway\Empre001\Data'
+    SessionName = 'Default'
+    Left = 64
+    Top = 24
+  end
+  object a2Sclientes: TDBISAMTable
+    DatabaseName = 'a2'
+    EngineVersion = '4.43 Build 1'
+    TableName = 'Sclientes'
+    Left = 64
+    Top = 128
+  end
+  object a2DataSet: TDataSetProvider
+    DataSet = a2Sclientes
+    Left = 152
+    Top = 24
+  end
+end
