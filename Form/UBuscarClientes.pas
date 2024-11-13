@@ -17,26 +17,18 @@ type
     Nombre1: TMenuItem;
     Documento1: TMenuItem;
     Contacto1: TMenuItem;
-    Ciudad1: TMenuItem;
-    btInformeClientes: TToolButton;
     btSalirBuscarClientes: TToolButton;
     ActionToolBar1: TActionToolBar;
     edBuscarCliente: TEdit;
     lbBuscarDescripcion: TLinkLabel;
     StatusBar1: TStatusBar;
-    MenuInformeClientes: TPopupMenu;
-    EstadodeCuenta1: TMenuItem;
-    Ventas1: TMenuItem;
-    ransaccionesComerciales1: TMenuItem;
     QueryBusquedaClientes: TDBISAMQuery;
-    StringGrid1: TStringGrid;
     TablaBusqueda: TDBGrid;
     dQueryBusquedaClientes: TDataSource;
     procedure btSalirBuscarClientesClick(Sender: TObject);
     procedure Nombre1Click(Sender: TObject);
     procedure Documento1Click(Sender: TObject);
     procedure Contacto1Click(Sender: TObject);
-    procedure Ciudad1Click(Sender: TObject);
     procedure StringGrid1Click(Sender: TObject);
     procedure edBuscarClienteChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -53,17 +45,6 @@ implementation
 
 {$R *.dfm}
 
-procedure TfmBuscarClientes.Ciudad1Click(Sender: TObject);
-var
-basePath: string;
-begin
-basePath := uData.moduloDatos.a2Database.Directory;
-lbBuscarDescripcion.Caption := 'Ciudad :' ;
-edBuscarCliente.Text := '';
-edBuscarCliente.SetFocus;
-    // Si el campo de búsqueda está vacío, mostramos todos los registros
-
-end;
 
 procedure TfmBuscarClientes.Contacto1Click(Sender: TObject);
 var
@@ -81,8 +62,14 @@ edBuscarCliente.SetFocus;
       '  Sclientes.FC_DESCRIPCION AS Descripcion, ' +
       '  Sclientes.FC_CODIGO AS RUT, ' +
       '  Sclientes.FC_TELEFONO AS Telefono, ' +
-      '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-      '  Sclientes.FC_EMAIL AS Correo ' +
+      '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+      '  Sclientes.FC_DIANPAIS AS Pais, ' +
+      '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+      '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+      '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
       'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
       'ORDER BY Sclientes.FC_DESCRIPCION ASC';
         QueryBusquedaClientes.Open;
@@ -104,8 +91,14 @@ edBuscarCliente.SetFocus;
       '  Sclientes.FC_CONTACTO AS Contacto, ' +
       '  Sclientes.FC_DESCRIPCION AS Descripcion, ' +
       '  Sclientes.FC_TELEFONO AS Telefono, ' +
-      '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-      '  Sclientes.FC_EMAIL AS Correo ' +
+      '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+      '  Sclientes.FC_DIANPAIS AS Pais, ' +
+      '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+      '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+      '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
       'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
       'ORDER BY Sclientes.FC_DESCRIPCION ASC';
         QueryBusquedaClientes.Open;
@@ -127,8 +120,14 @@ QueryBusquedaClientes.SQL.Text :=
         '  Sclientes.FC_CODIGO AS RUT, ' +
         '  Sclientes.FC_CONTACTO AS Contacto, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
           QueryBusquedaClientes.Open;
@@ -155,8 +154,14 @@ begin
         '  Sclientes.FC_CODIGO AS RUT, ' +
         '  Sclientes.FC_CONTACTO AS Contacto, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'WHERE Sclientes.FC_DESCRIPCION LIKE ''%' + filterText + '%'' ' + // Filtrar por Nombre
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
@@ -170,8 +175,14 @@ begin
         '  Sclientes.FC_DESCRIPCION AS Descripcion, ' +
         '  Sclientes.FC_CODIGO AS RUT, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'WHERE Sclientes.FC_CONTACTO LIKE ''%' + filterText + '%'' ' + // Filtrar por Contacto
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
@@ -185,8 +196,14 @@ begin
         '  Sclientes.FC_DESCRIPCION AS Descripcion, ' +
         '  Sclientes.FC_CONTACTO AS Contacto, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'WHERE Sclientes.FC_CODIGO LIKE ''%' + filterText + '%'' ' + // Filtrar por Rut
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
@@ -201,8 +218,14 @@ begin
         '  Sclientes.FC_CODIGO AS RUT, ' +
         '  Sclientes.FC_CONTACTO AS Contacto, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
     end;
@@ -215,8 +238,14 @@ begin
         '  Sclientes.FC_DESCRIPCION AS Descripcion, ' +
         '  Sclientes.FC_CODIGO AS RUT, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
     end;
@@ -229,8 +258,14 @@ begin
         '  Sclientes.FC_DESCRIPCION AS Descripcion, ' +
         '  Sclientes.FC_CONTACTO AS Contacto, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
     end;
@@ -250,8 +285,14 @@ basePath := uData.moduloDatos.a2Database.Directory;
         '  Sclientes.FC_CODIGO AS RUT, ' +
         '  Sclientes.FC_CONTACTO AS Contacto, ' +
         '  Sclientes.FC_TELEFONO AS Telefono, ' +
-        '  Sclientes.FC_DIRECCION1 AS Direccion, ' +
-        '  Sclientes.FC_EMAIL AS Correo ' +
+        '  Sclientes.FC_DIRECCION1 As Direccion, ' +
+        '  Sclientes.FC_DIANPAIS AS Pais, ' +
+        '  Sclientes.FC_DIANDEPARTAMENTO AS Departamento, ' +
+        '  Sclientes.FC_DIANMUNICIPIO AS Municipio, ' +
+        '  Sclientes.FC_EMAIL AS Correo, ' +
+        '  Sclientes.FC_TELEFONO AS Telefono, ' +
+      '  Sclientes.FC_CONTACTO AS Contacto, ' +
+      ' Sclientes.FC_ZONA AS Zona ' +
         'FROM "' + basePath + '\Sclientes.dat" Sclientes ' +
         'ORDER BY Sclientes.FC_DESCRIPCION ASC';
  QueryBusquedaClientes.Open;

@@ -12,14 +12,13 @@ type
   TfmClientesa2 = class(TForm)
     ToolBar1: TToolBar;
     btBuscarClientes: TToolButton;
-    ImagClientesLista: TImageList;
-    MenuClientes: TMainMenu;
+    ImagLista: TImageList;
+    Menu: TMainMenu;
     Menu1: TMenuItem;
     Buscar1: TMenuItem;
     Agregar1: TMenuItem;
     Modificar1: TMenuItem;
     Guardar1: TMenuItem;
-    Borrar1: TMenuItem;
     N1: TMenuItem;
     Salir1: TMenuItem;
     Consultar1: TMenuItem;
@@ -32,7 +31,6 @@ type
     btModificarClientes: TToolButton;
     btGuardarCliente: TToolButton;
     btCancelarClientes: TToolButton;
-    btBorrarClientes: TToolButton;
     btSalirClientes: TToolButton;
     Cancelar1: TMenuItem;
     edNombreCliente: TEdit;
@@ -51,13 +49,13 @@ type
     lbTelefonoCliente: TLabel;
     edClienteTelefono: TEdit;
     edClienteCorreo: TEdit;
-    lbCelularCliente: TLabel;
-    edClienteCelular: TEdit;
     lbZonaCliente: TLabel;
     edClienteZona: TEdit;
     lbContactoCliente: TLabel;
     edClienteContacto: TEdit;
     QueryGuardado: TDBISAMQuery;
+    QueryUbicacion: TDBISAMQuery;
+    QueryFiltroUbicacion: TDBISAMQuery;
     procedure btBuscarClientesClick(Sender: TObject);
     procedure Buscar1Click(Sender: TObject);
     procedure Salir1Click(Sender: TObject);
@@ -68,6 +66,9 @@ type
     procedure btCancelarClientesClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btGuardarClienteClick(Sender: TObject);
+    procedure cbClientePaisChange(Sender: TObject);
+    procedure cbClienteDepartamentoChange(Sender: TObject);
+    procedure cbClienteMunicipioChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -81,20 +82,26 @@ implementation
 {$R *.dfm}
 
 uses UModificarClientes;
+var idPais, idDepartamento, idMunicipio: Integer;
 
 procedure TfmClientesa2.RecibirDatos(datos: array of string; orden: String);
 var
-i : Integer;
+i, col, index : Integer;
+basePath, filterText, default : String;
+pais, departamento, municipio: array of string;
 begin
-
+basePath := uData.moduloDatos.a2Database.Directory;
 if orden = 'Nombre :' then
 begin
 edNombreCliente.Text := datos[0];
 edRutCliente.Text := datos[1];
 edClienteContacto.Text := datos[2];
 edClienteTelefono.Text := datos[3];
-edClienteZona.Text := datos[4];
-edClienteCorreo.Text := datos[5];
+mmDireccionCliente.Text := datos[4];
+edClienteCorreo.Text := datos[8];
+edClienteTelefono.Text := datos[9];
+edClienteContacto.Text := datos[10];
+edClienteZona.Text := datos[11];
 end;
 
 if orden = 'Contacto :' then
@@ -103,8 +110,11 @@ edClienteContacto.Text := datos[0];
 edNombreCliente.Text := datos[1];
 edRutCliente.Text := datos[2];
 edClienteTelefono.Text := datos[3];
-edClienteZona.Text := datos[4];
-edClienteCorreo.Text := datos[5];
+mmDireccionCliente.Text := datos[4];
+edClienteCorreo.Text := datos[8];
+edClienteTelefono.Text := datos[9];
+edClienteContacto.Text := datos[10];
+edClienteZona.Text := datos[11];
 end;
 
 if orden = 'Rut :' then
@@ -113,8 +123,11 @@ edRutCliente.Text := datos[0];
 edNombreCliente.Text := datos[1];
 edClienteContacto.Text := datos[2];
 edClienteTelefono.Text := datos[3];
-edClienteZona.Text := datos[4];
-edClienteCorreo.Text := datos[5];
+mmDireccionCliente.Text := datos[4];
+edClienteCorreo.Text := datos[8];
+edClienteTelefono.Text := datos[9];
+edClienteContacto.Text := datos[10];
+edClienteZona.Text := datos[11];
 end;
 
 for i := 0 to ComponentCount - 1 do
@@ -174,6 +187,8 @@ for i := 0 to ComponentCount - 1 do
     end;
   end;
 
+
+
 edRutCliente.Enabled := False;
 edNombreCliente.Enabled := True;
 edClienteContacto.Enabled := True;
@@ -183,7 +198,6 @@ edClienteCorreo.Enabled := True;
 cbClientePais.Enabled := True;
 cbClienteDepartamento.Enabled := True;
 cbClienteMunicipio.Enabled := True;
-edClienteCelular.Enabled := True;
 edClienteZona.Enabled := True;
 
 btBuscarClientes.Enabled := False;
@@ -191,8 +205,104 @@ btAgregarClientes.Enabled := False;
 btModificarClientes.Enabled := False;
 btGuardarCliente.Enabled := True;
 btCancelarClientes.Enabled := True;
-btBorrarClientes.Enabled := True;
 btSalirClientes.Enabled := False;
+
+//Saco los nombres a partir de ID
+//Pais
+QueryFiltroUbicacion.Close;
+QueryFiltroUbicacion.SQL.Text :=
+'SELECT UBICACION ' +
+'FROM "' + basePath + '\a2UbicacionGeo01.dat" a2UbicacionGeo01 ' +
+'WHERE a2UbicacionGeo01.ID = :ID';
+QueryFiltroUbicacion.ParamByName('ID').AsInteger := StrToIntDef(datos[5], 0);
+QueryFiltroUbicacion.Open;
+default := QueryFiltroUbicacion.FieldByName('UBICACION').AsString;
+
+QueryUbicacion.Close;
+QueryUbicacion.SQL.Text :=
+      'SELECT * ' +
+      'FROM "' + basePath + '\a2UbicacionGeo01.dat"';
+QueryUbicacion.Open;
+SetLength(pais,QueryUbicacion.RecordCount);
+col := 0;
+QueryUbicacion.First;
+while not QueryUbicacion.EoF do
+  begin
+    pais[col] := QueryUbicacion.FieldByName('Ubicacion').AsString;
+    Inc(col);
+    QueryUbicacion.Next;
+  end;
+  cbClientePais.Items.Clear;
+  for col := 0 to High(pais) do
+  begin
+    cbClientePais.Items.Add(pais[col]);
+  end;
+  index := cbClientePais.Items.IndexOf(default);
+  cbClientePais.ItemIndex := index;
+
+//Departamento
+QueryFiltroUbicacion.Close;
+QueryFiltroUbicacion.SQL.Text :=
+'SELECT UBICACION ' +
+'FROM "' + basePath + '\a2UbicacionGeo02.dat" a2UbicacionGeo02 ' +
+'WHERE a2UbicacionGeo02.ID = :ID';
+QueryFiltroUbicacion.ParamByName('ID').AsInteger := StrToIntDef(datos[6], 0);
+QueryFiltroUbicacion.Open;
+default := QueryFiltroUbicacion.FieldByName('UBICACION').AsString;
+
+QueryUbicacion.Close;
+QueryUbicacion.SQL.Text :=
+      'SELECT * ' +
+      'FROM "' + basePath + '\a2UbicacionGeo02.dat"';
+QueryUbicacion.Open;
+SetLength(departamento,QueryUbicacion.RecordCount);
+col := 0;
+QueryUbicacion.First;
+while not QueryUbicacion.EoF do
+  begin
+    departamento[col] := QueryUbicacion.FieldByName('Ubicacion').AsString;
+    Inc(col);
+    QueryUbicacion.Next;
+  end;
+  cbClienteDepartamento.Items.Clear;
+  for col := 0 to High(departamento) do
+  begin
+    cbClienteDepartamento.Items.Add(departamento[col]);
+  end;
+  index := cbClienteDepartamento.Items.IndexOf(default);
+  cbClienteDepartamento.ItemIndex := index;
+
+//Municipio
+QueryFiltroUbicacion.Close;
+QueryFiltroUbicacion.SQL.Text :=
+'SELECT UBICACION ' +
+'FROM "' + basePath + '\a2UbicacionGeo03.dat" a2UbicacionGeo03 ' +
+'WHERE a2UbicacionGeo03.ID = :ID';
+QueryFiltroUbicacion.ParamByName('ID').AsInteger := StrToIntDef(datos[7], 0);
+QueryFiltroUbicacion.Open;
+default := QueryFiltroUbicacion.FieldByName('UBICACION').AsString;
+
+QueryUbicacion.Close;
+QueryUbicacion.SQL.Text :=
+      'SELECT * ' +
+      'FROM "' + basePath + '\a2UbicacionGeo03.dat"';
+QueryUbicacion.Open;
+SetLength(municipio,QueryUbicacion.RecordCount);
+col := 0;
+QueryUbicacion.First;
+while not QueryUbicacion.EoF do
+  begin
+    municipio[col] := QueryUbicacion.FieldByName('Ubicacion').AsString;
+    Inc(col);
+    QueryUbicacion.Next;
+  end;
+  cbClienteMunicipio.Items.Clear;
+  for col := 0 to High(municipio) do
+  begin
+    cbClienteMunicipio.Items.Add(municipio[col]);
+  end;
+  index := cbClienteMunicipio.Items.IndexOf(default);
+  cbClienteMunicipio.ItemIndex := index;
 end;
 
 
@@ -208,10 +318,116 @@ fmBuscarClientes :=  TfmBuscarClientes.Create(Self);
 fmBuscarClientes.ShowModal ;
 end;
 
+procedure TfmClientesa2.cbClienteDepartamentoChange(Sender: TObject);
+var
+  i, col: Integer;
+  filterText, basePath: String;
+  municipio: array of string;
+begin
+basePath := uData.moduloDatos.a2Database.Directory;
+filterText := cbClienteDepartamento.Text;
+//Municipio
+  QueryFiltroUbicacion.Close;
+  QueryFiltroUbicacion.SQL.Text :=
+  'SELECT ID ' +
+  'FROM "' + basePath + '\a2UbicacionGeo02.dat" a2UbicacionGeo02 ' +
+  'WHERE a2UbicacionGeo02.UBICACION = ' + QuotedStr(filterText);
+  QueryFiltroUbicacion.Open;
+  idDepartamento := QueryFiltroUbicacion.FieldByName('ID').AsInteger;
+
+  QueryUbicacion.Close;
+  QueryUbicacion.SQL.Text :=
+      'SELECT * ' +
+      'FROM "' + basePath + '\a2UbicacionGeo03.dat" a2UbicacionGeo03 ' +
+      'WHERE a2UbicacionGeo03.PADRE = :ID';
+  QueryUbicacion.ParamByName('ID').AsInteger := idDepartamento;
+  QueryUbicacion.Open;
+
+  SetLength(municipio,QueryUbicacion.RecordCount);
+  col := 0;
+  QueryUbicacion.First;
+  while not QueryUbicacion.EoF do
+  begin
+    municipio[col] := QueryUbicacion.FieldByName('Ubicacion').AsString;
+    Inc(col);
+    QueryUbicacion.Next;
+  end;
+  cbClienteMunicipio.Items.Clear;
+  for col := 0 to High(municipio) do
+  begin
+    cbClienteMunicipio.Items.Add(municipio[col]);
+  end;
+  cbClienteMunicipio.Enabled:= True;
+  cbClienteMunicipio.Color := clWindow;
+end;
+
+procedure TfmClientesa2.cbClienteMunicipioChange(Sender: TObject);
+var
+i, col: Integer;
+filterText, basePath: String;
+begin
+  basePath := uData.moduloDatos.a2Database.Directory;
+  filterText := cbClienteMunicipio.Text;
+
+  QueryFiltroUbicacion.Close;
+  QueryFiltroUbicacion.SQL.Text :=
+  'SELECT ID ' +
+  'FROM "' + basePath + '\a2UbicacionGeo03.dat" a2UbicacionGeo03 ' +
+  'WHERE a2UbicacionGeo03.UBICACION = ' + QuotedStr(filterText);
+  QueryFiltroUbicacion.Open;
+  idMunicipio := QueryFiltroUbicacion.FieldByName('ID').AsInteger;
+
+end;
+
+procedure TfmClientesa2.cbClientePaisChange(Sender: TObject);
+var
+  i, col: Integer;
+  filterText, basePath: String;
+  departamento: array of string;
+begin
+  basePath := uData.moduloDatos.a2Database.Directory;
+  filterText := cbClientePais.Text;
+      //Departamento
+  QueryFiltroUbicacion.Close;
+  QueryFiltroUbicacion.SQL.Text :=
+  'SELECT ID ' +
+  'FROM "' + basePath + '\a2UbicacionGeo01.dat" a2UbicacionGeo01 ' +
+  'WHERE a2UbicacionGeo01.UBICACION = ' + QuotedStr(filterText);
+  QueryFiltroUbicacion.Open;
+  idPais := QueryFiltroUbicacion.FieldByName('ID').AsInteger;
+
+  QueryUbicacion.Close;
+  QueryUbicacion.SQL.Text :=
+      'SELECT * ' +
+      'FROM "' + basePath + '\a2UbicacionGeo02.dat" a2UbicacionGeo02 ' +
+      'WHERE a2UbicacionGeo02.PADRE = :ID';
+  QueryUbicacion.ParamByName('ID').AsInteger := idPais;
+  QueryUbicacion.Open;
+
+  SetLength(departamento,QueryUbicacion.RecordCount);
+  col := 0;
+  QueryUbicacion.First;
+  while not QueryUbicacion.EoF do
+  begin
+    departamento[col] := QueryUbicacion.FieldByName('Ubicacion').AsString;
+    Inc(col);
+    QueryUbicacion.Next;
+  end;
+  cbClienteDepartamento.Items.Clear;
+  for col := 0 to High(departamento) do
+  begin
+    cbClienteDepartamento.Items.Add(departamento[col]);
+  end;
+
+end;
+
 procedure TfmClientesa2.FormCreate(Sender: TObject);
 var
-  i: Integer;
+  i, col, default: Integer;
+  filterText, basePath: String;
+  pais, departamento, municipio: array of string;
 begin
+  basePath := uData.moduloDatos.a2Database.Directory;
   for i := 0 to ComponentCount - 1 do
   begin
     if Components[i] is TEdit then
@@ -240,15 +456,17 @@ begin
 
     else if Components[i] is TComboBox then
     begin
-      TComboBox(Components[i]).Enabled := False;
-      // No puedes cambiar el color de un TComboBox directamente
+      with TComboBox(Components[i]) do
+      if Enabled then
+          Color := clWindow
+        else
+          Color := cl3dLight;
     end;
   end;
  //Componentes que se deshabilitan y no son necesarios al momento de abrir el formulario
-  MenuClientes.Items[1].Enabled := False;
+  Menu.Items[1].Enabled := False;
   btCancelarClientes.Enabled := False;
   btGuardarCliente.Enabled := False ;
-  btBorrarClientes.Enabled := False;
 
 end;
 
@@ -268,8 +486,11 @@ end;
 
 procedure TfmClientesa2.btAgregarClientesClick(Sender: TObject);
 var
-  i: Integer;
+  i, col, default: Integer;
+  filterText, basePath: String;
+  pais, departamento, municipio: array of string;
 begin
+  basePath := uData.moduloDatos.a2Database.Directory;
   for i := 0 to ComponentCount - 1 do
   begin
     if Components[i] is TEdit then
@@ -302,12 +523,14 @@ begin
     begin
       with TComboBox(Components[i]) do
       begin
-        Enabled := True;
         Text := '';
-        // No puedes cambiar el color de un TComboBox directamente
+
       end;
     end;
-
+    cbClientePais.Enabled := True;
+    mmDireccionCliente.Enabled := True;
+    cbClienteDepartamento.Enabled := True;
+    cbClienteMunicipio.Enabled := False;
     if
       //Cambio el color a los componentes ComboBox.
      (fmClientesa2.cbClientePais.Enabled) or
@@ -335,12 +558,63 @@ begin
   end;
 
   edRutCliente.SetFocus;
-
   btBuscarClientes.Enabled := not btAgregarClientes.Enabled;
   btModificarClientes.Enabled := False;
-  btBorrarClientes.Enabled := False;
   btGuardarCliente.Enabled := True;
   btSalirClientes.Enabled := False;
+
+  //Me asigna valores a pais
+  //Pais
+  QueryUbicacion.Close;
+  QueryUbicacion.SQL.Text :=
+      'SELECT * ' +
+      'FROM "' + basePath + '\a2UbicacionGeo01.dat"';
+  QueryUbicacion.Open;
+  SetLength(pais,QueryUbicacion.RecordCount);
+  col := 0;
+  QueryUbicacion.First;
+  while not QueryUbicacion.EoF do
+  begin
+    pais[col] := QueryUbicacion.FieldByName('Ubicacion').AsString;
+    Inc(col);
+    QueryUbicacion.Next;
+  end;
+  cbClientePais.Items.Clear;
+  for col := 0 to High(pais) do
+  begin
+    cbClientePais.Items.Add(pais[col]);
+  end;
+
+  default := cbClientePais.Items.IndexOf('Colombia');
+  cbClientePais.ItemIndex := default;
+  idPais := 42;
+  idDepartamento := 0;
+  idMunicipio := 0;
+
+  QueryUbicacion.Close;
+  QueryUbicacion.SQL.Text :=
+      'SELECT * ' +
+      'FROM "' + basePath + '\a2UbicacionGeo02.dat" a2UbicacionGeo02 ' +
+      'WHERE a2UbicacionGeo02.PADRE = :ID';
+  QueryUbicacion.ParamByName('ID').AsInteger := idPais;
+  QueryUbicacion.Open;
+
+  SetLength(departamento,QueryUbicacion.RecordCount);
+  col := 0;
+  QueryUbicacion.First;
+  while not QueryUbicacion.EoF do
+  begin
+    departamento[col] := QueryUbicacion.FieldByName('Ubicacion').AsString;
+    Inc(col);
+    QueryUbicacion.Next;
+  end;
+  cbClienteDepartamento.Items.Clear;
+  for col := 0 to High(departamento) do
+  begin
+    cbClienteDepartamento.Items.Add(departamento[col]);
+  end;
+
+
 end;
 
 
@@ -375,7 +649,6 @@ begin
          cbClienteMunicipio.Enabled or
          edClienteCorreo.Enabled  or
          edClienteTelefono.Enabled or
-         edClienteCelular.Enabled or
          edClienteZona.Enabled or
          edClienteContacto.Enabled
 
@@ -389,7 +662,6 @@ begin
          cbClienteMunicipio.Color := clWindow;
          edClienteCorreo.Color := clWindow;
          edClienteTelefono.Color := clWindow;
-         edClienteCelular.Color := clWindow;
          edClienteZona.Color := clWindow;
          edClienteContacto.Color := ClWindow;
          end
@@ -404,7 +676,6 @@ begin
          cbClienteMunicipio.Color := cl3dLight;
          edClienteCorreo.Color := cl3dLight;
          edClienteTelefono.Color := cl3dLight;
-         edClienteCelular.Color := cl3dLight;
          edClienteZona.Color := cl3dLight;
          edClienteContacto.Color := cl3dLight;
          end
@@ -413,30 +684,34 @@ begin
 
   btBuscarClientes.Enabled := True;
   btModificarClientes.Enabled := True;
-  btBorrarClientes.Enabled := True;
   btSalirClientes.Enabled := True;
   btAgregarClientes.Enabled := True;
+  cbClientePais.Items.Clear;
+  cbClientePais.Text := '';
+  cbClienteMunicipio.Items.Clear;
+  cbClienteMunicipio.Text := '';
+  cbClienteDepartamento.Items.Clear;
+  cbClienteDepartamento.Text := '';
   begin
-  MenuClientes.Items[1].Enabled := False;
+  Menu.Items[1].Enabled := False;
   btCancelarClientes.Enabled := False;
   btGuardarCliente.Enabled := False ;
-  btBorrarClientes.Enabled := False;
   end;
 end;
 
 
 procedure TfmClientesa2.btGuardarClienteClick(Sender: TObject);
 var
-filterText, basePath, rut, nombre, contacto, telefono, direccion, correo : String;
+filterText, basePath, rut, nombre, contacto, zona, celular, telefono, direccion, correo, pais, departamento, municipio : String;
 respuesta : Integer;
 begin
   basePath := uData.moduloDatos.a2Database.Directory;
- { if (edRutCliente.Text = '') or (mmDireccionCliente.Text = '') or (cbClientePais.Text = '') then
+  if (edRutCliente.Text = '') or (mmDireccionCliente.Text = '') or (cbClientePais.Text = '') or (cbClienteMunicipio.Text = '') or (cbClienteDepartamento.Text = '') then
   begin
     ShowMessage('Por favor, complete todos los campos antes de guardar.');
   end
   else
-  begin      }
+  begin
     // Aquí va el código para guardar los datos
     filterText := Trim(edRutCliente.Text);
     QueryGuardado.Close;
@@ -451,6 +726,37 @@ begin
     telefono := Trim(edClienteTelefono.Text);
     direccion := Trim(mmDireccionCliente.Text);
     correo := Trim(edClienteCorreo.Text);
+    pais := Trim(cbClientePais.Text);
+    departamento := Trim(cbClienteDepartamento.Text);
+    municipio := Trim(cbClienteMunicipio.Text);
+    zona := Trim(edClienteZona.Text);
+    contacto := Trim(edClienteContacto.Text);
+
+    //Saco las ids
+    QueryFiltroUbicacion.Close;
+    QueryFiltroUbicacion.SQL.Text :=
+    'SELECT ID ' +
+    'FROM "' + basePath + '\a2UbicacionGeo01.dat" a2UbicacionGeo01 ' +
+    'WHERE a2UbicacionGeo01.UBICACION = ' + QuotedStr(pais);
+    QueryFiltroUbicacion.Open;
+    idPais := QueryFiltroUbicacion.FieldByName('ID').AsInteger;
+
+    QueryFiltroUbicacion.Close;
+    QueryFiltroUbicacion.SQL.Text :=
+    'SELECT ID ' +
+    'FROM "' + basePath + '\a2UbicacionGeo02.dat" a2UbicacionGeo02 ' +
+    'WHERE a2UbicacionGeo02.UBICACION = ' + QuotedStr(departamento);
+    QueryFiltroUbicacion.Open;
+    idDepartamento := QueryFiltroUbicacion.FieldByName('ID').AsInteger;
+
+    QueryFiltroUbicacion.Close;
+    QueryFiltroUbicacion.SQL.Text :=
+    'SELECT ID ' +
+    'FROM "' + basePath + '\a2UbicacionGeo03.dat" a2UbicacionGeo03 ' +
+    'WHERE a2UbicacionGeo03.UBICACION = ' + QuotedStr(municipio);
+    QueryFiltroUbicacion.Open;
+    idMunicipio := QueryFiltroUbicacion.FieldByName('ID').AsInteger;
+
     respuesta := QueryGuardado.FieldByName('Existe').AsInteger;
     uData.moduloDatos.Sclientes.Active := False;
     if respuesta > 0 then
@@ -462,8 +768,16 @@ begin
       'Sclientes.FC_CONTACTO = ' + QuotedStr(contacto) + ', ' +
       'Sclientes.FC_TELEFONO = ' + QuotedStr(telefono) + ', ' +
       'Sclientes.FC_DIRECCION1 = ' + QuotedStr(direccion) + ', ' +
-      'Sclientes.FC_EMAIL = ' + QuotedStr(correo) + ' ' +
+      'Sclientes.FC_DIANPAIS = :idPais, ' +
+      'Sclientes.FC_DIANDEPARTAMENTO = :idDepartamento, ' +
+      'Sclientes.FC_DIANMUNICIPIO = :idMunicipio, ' +
+      'Sclientes.FC_EMAIL = ' + QuotedStr(correo) + ', ' +
+      'Sclientes.FC_ZONA = ' + QuotedStr(zona) + ', ' +
+      'Sclientes.FC_CONTACTO = ' + QuotedStr(contacto) + ' ' +
       'WHERE Sclientes.FC_CODIGO = ' + QuotedStr(filterText);
+      QueryGuardado.ParamByName('idPais').AsString := IntToStr(idPais);
+      QueryGuardado.ParamByName('idDepartamento').AsString := IntToStr(idDepartamento);
+      QueryGuardado.ParamByName('idMunicipio').AsString := IntToStr(idMunicipio);
       QueryGuardado.ExecSQL;
       ShowMessage('Datos Guardados Exitosamente');
     end
@@ -471,21 +785,41 @@ begin
     begin
       QueryGuardado.Close;
       QueryGuardado.SQL.Text :=
-      'INSERT INTO "' + basePath + '\Sclientes.dat" Sclientes (Sclientes.FC_CODIGO, Sclientes.FC_DESCRIPCION, Sclientes.FC_CONTACTO, Sclientes.FC_TELEFONO, Sclientes.FC_DIRECCION1, Sclientes.FC_EMAIL) ' +
+      'INSERT INTO "' + basePath + '\Sclientes.dat" Sclientes (Sclientes.FC_CODIGO, Sclientes.FC_DESCRIPCION, Sclientes.FC_CONTACTO, Sclientes.FC_TELEFONO, Sclientes.FC_DIRECCION1, ' +
+      'Sclientes.FC_DIANPAIS, Sclientes.FC_DIANDEPARTAMENTO, Sclientes.FC_DIANMUNICIPIO, Sclientes.FC_EMAIL, Sclientes.FC_ZONA, Sclientes.FC_CONTACTO)' +
       'VALUES ( ' + QuotedStr(filterText) + ', ' +
        QuotedStr(nombre) + ', ' +
        QuotedStr(contacto) + ', ' +
        QuotedStr(telefono) + ', ' +
        QuotedStr(direccion) + ', ' +
-       QuotedStr(correo) + ' )';
+       ':idPais, ' +
+       ':idDepartamento, ' +
+       ':idMunicipio, ' +
+       QuotedStr(correo) + ', ' +
+       QuotedStr(zona) + ', ' +
+       QuotedStr(contacto) + ' )';
+      QueryGuardado.ParamByName('idPais').AsString := IntToStr(idPais);
+      QueryGuardado.ParamByName('idDepartamento').AsString := IntToStr(idDepartamento);
+      QueryGuardado.ParamByName('idMunicipio').AsString := IntToStr(idMunicipio);
       QueryGuardado.ExecSQL;
       ShowMessage('Datos Insertados Exitosamente');
     end;
 
   {end;}
   uData.moduloDatos.Sclientes.Active := True;
-  btSalirClientes.Enabled := True;
+  btBuscarClientes.Enabled := True;
+  btModificarClientes.Enabled :=True;
   btAgregarClientes.Enabled := True;
+  btCancelarClientes.Enabled := False;
+  BtGuardarCliente.Enabled  := False;
+  btSalirClientes.Enabled := True;
+  cbClientePais.Items.Clear;
+  cbClientePais.Text := '';
+  cbClienteMunicipio.Items.Clear;
+  cbClienteMunicipio.Text := '';
+  cbClienteDepartamento.Items.Clear;
+  cbClienteDepartamento.Text := '';
+end;
 end;
 
 procedure TfmClientesa2.btSalirClientesClick(Sender: TObject);
@@ -493,7 +827,7 @@ procedure TfmClientesa2.btSalirClientesClick(Sender: TObject);
 Begin
 btBuscarClientes.Enabled := True;
 btModificarClientes.Enabled :=True;
-btBorrarClientes.Enabled := False;
+btAgregarClientes.Enabled := True;
 btCancelarClientes.Enabled := False;
 BtGuardarCliente.Enabled  := False;
 Close;

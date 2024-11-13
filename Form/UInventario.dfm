@@ -2,8 +2,8 @@ object fmInventario: TfmInventario
   Left = 470
   Top = 208
   BorderStyle = bsToolWindow
-  Caption = 'Inventarios'
-  ClientHeight = 639
+  Caption = 'Inventario'
+  ClientHeight = 615
   ClientWidth = 1111
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,10 +11,102 @@ object fmInventario: TfmInventario
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Menu = MainMenu1
+  Menu = Menu
   Position = poDesigned
   StyleName = 'Luna'
+  OnCreate = FormCreate
   TextHeight = 15
+  object Label2: TLabel
+    Left = 0
+    Top = 93
+    Width = 29
+    Height = 16
+    Caption = 'RUT:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 0
+    Top = 125
+    Width = 140
+    Height = 16
+    Caption = 'Nombre del Producto:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label10: TLabel
+    Left = 0
+    Top = 287
+    Width = 49
+    Height = 16
+    Caption = 'Estado:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 0
+    Top = 155
+    Width = 68
+    Height = 16
+    Caption = 'Categoria:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 0
+    Top = 187
+    Width = 62
+    Height = 16
+    Caption = 'Deposito:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 0
+    Top = 253
+    Width = 69
+    Height = 16
+    Caption = 'Existencia:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 0
+    Top = 221
+    Width = 45
+    Height = 16
+    Caption = 'Precio:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
@@ -24,57 +116,155 @@ object fmInventario: TfmInventario
     ButtonHeight = 67
     ButtonWidth = 58
     Caption = 'tbClientes'
-    Images = ImagInventarioLista
+    Images = ImagLista
     ShowCaptions = True
     TabOrder = 0
     ExplicitWidth = 1105
-    object btBuscarClientes: TToolButton
+    object btBuscar: TToolButton
       Left = 0
       Top = 0
       Caption = 'Buscar'
       ImageIndex = 0
-      OnClick = btBuscarClientesClick
+      OnClick = btBuscarClick
     end
-    object btAgregarInventario: TToolButton
+    object btAgregar: TToolButton
       Left = 58
       Top = 0
       Caption = 'Agregar'
       ImageIndex = 1
+      OnClick = btAgregarClick
     end
-    object btModificarInventario: TToolButton
+    object btModificar: TToolButton
       Left = 116
       Top = 0
       Caption = 'Modificar'
       ImageIndex = 2
-      OnClick = btModificarInventarioClick
+      OnClick = btModificarClick
     end
-    object btGuardarInventario: TToolButton
+    object btGuardar: TToolButton
       Left = 174
       Top = 0
       Caption = 'Guardar'
       ImageIndex = 3
+      OnClick = btGuardarClick
     end
-    object btCancelarInventario: TToolButton
+    object btCancelar: TToolButton
       Left = 232
       Top = 0
       Caption = 'Cancelar'
       ImageIndex = 4
+      OnClick = btCancelarClick
     end
-    object btBorrarInventario: TToolButton
+    object btSalir: TToolButton
       Left = 290
-      Top = 0
-      Caption = 'Borrar'
-      ImageIndex = 5
-    end
-    object btSalirInventario: TToolButton
-      Left = 348
       Top = 0
       Caption = 'Salir'
       ImageIndex = 6
-      OnClick = btSalirInventarioClick
+      OnClick = btSalirClick
     end
   end
-  object ImagInventarioLista: TImageList
+  object edRut: TEdit
+    Left = 143
+    Top = 88
+    Width = 219
+    Height = 26
+    Ctl3D = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentCtl3D = False
+    ParentFont = False
+    CanUndoSelText = True
+    TabOrder = 1
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object edNombre: TEdit
+    Left = 143
+    Top = 120
+    Width = 726
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object cbEstado: TCheckBox
+    Left = 143
+    Top = 280
+    Width = 110
+    Height = 26
+    Caption = 'Activo'
+    TabOrder = 3
+  end
+  object cbCategoria: TComboBox
+    Left = 143
+    Top = 152
+    Width = 219
+    Height = 26
+    Style = csDropDownList
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    StyleElements = [seFont, seBorder]
+  end
+  object cbDeposito: TComboBox
+    Left = 143
+    Top = 184
+    Width = 219
+    Height = 26
+    Style = csDropDownList
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 5
+    StyleElements = [seFont, seBorder]
+  end
+  object edExistencia: TEdit
+    Left = 143
+    Top = 248
+    Width = 219
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 6
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object edPrecio: TEdit
+    Left = 143
+    Top = 216
+    Width = 219
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 7
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object ImagLista: TImageList
     Height = 45
     Width = 45
     Left = 528
@@ -2179,8 +2369,8 @@ object fmInventario: TfmInventario
       FFFFFFFFFFFFF000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000
       00000000000000000000000000000000000000000000}
   end
-  object MainMenu1: TMainMenu
-    Left = 624
+  object Menu: TMainMenu
+    Left = 592
     Top = 8
     object Menu1: TMenuItem
       Caption = 'Menu'
@@ -2198,9 +2388,6 @@ object fmInventario: TfmInventario
       end
       object Cancelar1: TMenuItem
         Caption = 'Cancelar'
-      end
-      object Borrar1: TMenuItem
-        Caption = 'Borrar'
       end
       object N1: TMenuItem
         Caption = '-'
@@ -2227,5 +2414,12 @@ object fmInventario: TfmInventario
         Caption = 'Terceros'
       end
     end
+  end
+  object QueryGuardado: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.dSclientes
+    Params = <>
+    Left = 664
+    Top = 8
   end
 end

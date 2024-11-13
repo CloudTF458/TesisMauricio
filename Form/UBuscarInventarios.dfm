@@ -1,10 +1,10 @@
-object fmBuscarProductos: TfmBuscarProductos
+object fmBuscarInventario: TfmBuscarInventario
   Left = 470
   Top = 208
   BorderStyle = bsToolWindow
-  Caption = 'Buscar Productos en el inventario'
-  ClientHeight = 680
-  ClientWidth = 1111
+  Caption = 'Buscar Inventario'
+  ClientHeight = 691
+  ClientWidth = 1114
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,11 +13,12 @@ object fmBuscarProductos: TfmBuscarProductos
   Font.Style = []
   Position = poDesigned
   StyleName = 'Luna'
+  OnCreate = FormCreate
   TextHeight = 15
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 1111
+    Width = 1114
     Height = 53
     AutoSize = True
     ButtonHeight = 53
@@ -28,61 +29,31 @@ object fmBuscarProductos: TfmBuscarProductos
     Font.Height = -11
     Font.Name = 'Segoe UI'
     Font.Style = []
-    Images = ImagBuscarInventarioLista
+    Images = ImagBuscarLista
     ParentFont = False
     ShowCaptions = True
     TabOrder = 0
-    ExplicitWidth = 1105
-    object btOrdenarProductos: TToolButton
+    ExplicitWidth = 1108
+    object btOrdenar: TToolButton
       Left = 0
       Top = 0
       Caption = 'Ordenar por:'
-      DropdownMenu = MenuOrdenarInventario
+      DropdownMenu = MenuOrdenar
       ImageIndex = 0
       Style = tbsDropDown
     end
-    object btInformeProducto: TToolButton
+    object btSalirBuscar: TToolButton
       Left = 95
-      Top = 0
-      Caption = 'Informe'
-      DropdownMenu = MenuInformeInventario
-      Enabled = False
-      ImageIndex = 1
-      Style = tbsDropDown
-    end
-    object btSalirBuscarProductos: TToolButton
-      Left = 190
       Top = 0
       Caption = 'Salir'
       ImageIndex = 2
-      OnClick = btSalirBuscarProductosClick
+      OnClick = btSalirBuscarClick
     end
   end
-  object ActionToolBar1: TActionToolBar
-    Left = 0
-    Top = 53
-    Width = 1111
-    Height = 36
-    Caption = 'ActionToolBar1'
-    Color = clMenuBar
-    ColorMap.DisabledFontColor = 10461087
-    ColorMap.HighlightColor = clWhite
-    ColorMap.BtnSelectedFont = clBlack
-    ColorMap.UnusedColor = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
-    Spacing = 0
-    StyleName = 'Luna'
-    ExplicitWidth = 1105
-  end
-  object edBuscarProductos: TEdit
-    Left = 104
+  object edBuscar: TEdit
+    Left = 98
     Top = 59
-    Width = 995
+    Width = 1010
     Height = 28
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -90,87 +61,42 @@ object fmBuscarProductos: TfmBuscarProductos
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     StyleName = 'Luna'
-    OnClick = edBuscarProductosClick
+    OnChange = edBuscarChange
   end
-  object lbBuscarDescripcioninv: TLinkLabel
+  object lbBuscarDescripcion: TLinkLabel
     Left = 8
     Top = 62
-    Width = 56
+    Width = 62
     Height = 21
-    Caption = 'Codigo :'
+    Caption = 'Nombre :'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
   end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 661
-    Width = 1111
-    Height = 19
-    Panels = <>
-    ExplicitTop = 647
-    ExplicitWidth = 1105
-  end
-  object StringGrid1: TStringGrid
-    AlignWithMargins = True
+  object TablaBusqueda: TDBGrid
     Left = 8
-    Top = 95
-    Width = 1081
-    Height = 546
-    BevelOuter = bvNone
-    BorderStyle = bsNone
-    DrawingStyle = gdsClassic
-    FixedCols = 0
-    RowCount = 20
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    Options = [goFixedHorzLine, goVertLine, goColSizing, goRowSelect, goFixedColClick, goFixedRowDefAlign]
-    ParentFont = False
-    ScrollBars = ssNone
-    TabOrder = 5
-    StyleName = 'Luna'
-    OnClick = StringGrid1Click
-    ColWidths = (
-      194
-      202
-      169
-      216
-      350)
-    RowHeights = (
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      30
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24)
+    Top = 93
+    Width = 1112
+    Height = 578
+    DataSource = dQueryBusqueda
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
   end
-  object ImagBuscarInventarioLista: TImageList
+  object ImagBuscarLista: TImageList
     Height = 25
     Width = 25
-    Left = 368
+    Left = 328
     Bitmap = {
       494C010103000800040019001900FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000640000001900000001002000000000001027
@@ -504,50 +430,33 @@ object fmBuscarProductos: TfmBuscarProductos
       FFFFFFF0001FFFFFFFE000000000000000000000000000000000000000000000
       000000000000}
   end
-  object MenuOrdenarInventario: TPopupMenu
+  object MenuOrdenar: TPopupMenu
     OwnerDraw = True
-    Left = 512
+    Left = 464
     object Nombre1: TMenuItem
-      Caption = 'C'#243'digo'
+      Caption = 'Nombre'
       OnClick = Nombre1Click
     end
     object Documento1: TMenuItem
-      Caption = 'Descripci'#243'n'
+      Caption = 'C'#243'digo'
       OnClick = Documento1Click
     end
-    object Contacto1: TMenuItem
-      Caption = 'Referencia'
-      OnClick = Contacto1Click
-    end
-    object Ciudad1: TMenuItem
-      Caption = 'Departamento'
-      OnClick = Ciudad1Click
-    end
-    object Modelo1: TMenuItem
-      Caption = 'Modelo'
-      OnClick = Modelo1Click
-    end
-    object Marca1: TMenuItem
-      Caption = 'Marca'
-      OnClick = Marca1Click
+    object Deposito1: TMenuItem
+      Caption = 'Deposito'
+      OnClick = Deposito1Click
     end
   end
-  object MenuInformeInventario: TPopupMenu
-    Left = 648
-    object EstadodeCuenta1: TMenuItem
-      Caption = 'Costos y Precios'
-    end
-    object Ventas1: TMenuItem
-      Caption = 'Existencia'
-    end
-    object ransaccionesComerciales1: TMenuItem
-      Caption = 'Seriales'
-    end
-    object Proveedores1: TMenuItem
-      Caption = 'Proveedores'
-    end
-    object Operaciones1: TMenuItem
-      Caption = 'Operaciones'
-    end
+  object QueryBusqueda: TDBISAMQuery
+    DatabaseName = 'a2Database'
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.dSclientes
+    SQL.Strings = (
+      '')
+    Params = <>
+    Left = 696
+  end
+  object dQueryBusqueda: TDataSource
+    DataSet = QueryBusqueda
+    Left = 832
   end
 end

@@ -10,9 +10,10 @@ object fmProveedores: TfmProveedores
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Menu = MainMenu1
+  Menu = Menu
   Position = poDesigned
   StyleName = 'Luna'
+  OnCreate = FormCreate
   TextHeight = 15
   object Label1: TLabel
     Left = 0
@@ -55,7 +56,7 @@ object fmProveedores: TfmProveedores
   end
   object Label4: TLabel
     Left = 0
-    Top = 247
+    Top = 271
     Width = 64
     Height = 16
     Caption = 'Municipio:'
@@ -68,7 +69,7 @@ object fmProveedores: TfmProveedores
   end
   object Label5: TLabel
     Left = 0
-    Top = 217
+    Top = 241
     Width = 99
     Height = 16
     Caption = 'Departamento:'
@@ -81,7 +82,7 @@ object fmProveedores: TfmProveedores
   end
   object Label6: TLabel
     Left = 0
-    Top = 187
+    Top = 211
     Width = 31
     Height = 16
     Caption = 'Pais:'
@@ -94,7 +95,7 @@ object fmProveedores: TfmProveedores
   end
   object Label7: TLabel
     Left = 0
-    Top = 285
+    Top = 303
     Width = 43
     Height = 16
     Caption = 'E-mail:'
@@ -107,7 +108,7 @@ object fmProveedores: TfmProveedores
   end
   object Label8: TLabel
     Left = 0
-    Top = 320
+    Top = 338
     Width = 60
     Height = 16
     Caption = 'Telefono:'
@@ -118,25 +119,12 @@ object fmProveedores: TfmProveedores
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Label9: TLabel
-    Left = 0
-    Top = 352
-    Width = 49
-    Height = 16
-    Caption = 'Celular:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
   object Label10: TLabel
     Left = 0
-    Top = 384
-    Width = 36
+    Top = 375
+    Width = 49
     Height = 16
-    Caption = 'Zona:'
+    Caption = 'Estado:'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
@@ -146,7 +134,7 @@ object fmProveedores: TfmProveedores
   end
   object Label11: TLabel
     Left = 0
-    Top = 416
+    Top = 407
     Width = 64
     Height = 16
     Caption = 'Cont'#225'cto:'
@@ -166,55 +154,74 @@ object fmProveedores: TfmProveedores
     ButtonHeight = 67
     ButtonWidth = 58
     Caption = 'tbClientes'
-    Images = ImagProveedoreslLista
+    Images = ImagLista
     ShowCaptions = True
     TabOrder = 0
     ExplicitWidth = 1105
-    object btBuscarClientes: TToolButton
+    object btBuscar: TToolButton
       Left = 0
       Top = 0
       Caption = 'Buscar'
       ImageIndex = 0
+      OnClick = btBuscarClick
     end
-    object ToolButton1: TToolButton
+    object btAgregar: TToolButton
       Left = 58
       Top = 0
       Caption = 'Agregar'
       ImageIndex = 1
+      OnClick = btAgregarClick
     end
-    object ToolButton2: TToolButton
+    object btModificar: TToolButton
       Left = 116
       Top = 0
       Caption = 'Modificar'
       ImageIndex = 2
+      OnClick = btModificarClick
     end
-    object ToolButton3: TToolButton
+    object btGuardar: TToolButton
       Left = 174
       Top = 0
       Caption = 'Guardar'
       ImageIndex = 3
+      OnClick = btGuardarClick
     end
-    object ToolButton4: TToolButton
+    object btCancelar: TToolButton
       Left = 232
       Top = 0
       Caption = 'Cancelar'
       ImageIndex = 4
+      OnClick = btCancelarClick
     end
-    object ToolButton5: TToolButton
+    object btSalir: TToolButton
       Left = 290
-      Top = 0
-      Caption = 'Borrar'
-      ImageIndex = 5
-    end
-    object ToolButton6: TToolButton
-      Left = 348
       Top = 0
       Caption = 'Salir'
       ImageIndex = 6
-      OnClick = ToolButton6Click
+      OnClick = btSalirClick
     end
   end
-  object Edit1: TEdit
+  object mmDireccionProveedor: TMemo
+    Left = 155
+    Top = 152
+    Width = 438
+    Height = 50
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = 'Latin American'
+    Lines.Strings = (
+      '')
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object edNombreProveedor: TEdit
     Left = 155
     Top = 120
     Width = 726
@@ -225,97 +232,90 @@ object fmProveedores: TfmProveedores
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 2
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
   end
-  object Edit2: TEdit
+  object edRutProveedor: TEdit
     Left = 155
     Top = 88
     Width = 219
     Height = 26
+    Ctl3D = True
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
     Font.Name = 'Tahoma'
     Font.Style = []
-    NumbersOnly = True
+    ParentCtl3D = False
     ParentFont = False
-    TabOrder = 2
-  end
-  object Memo1: TMemo
-    Left = 155
-    Top = 152
-    Width = 326
-    Height = 26
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ImeName = 'Latin American'
-    Lines.Strings = (
-      '')
-    ParentFont = False
-    ParentShowHint = False
-    ShowHint = True
+    CanUndoSelText = True
     TabOrder = 3
+    StyleElements = [seFont, seBorder]
     StyleName = 'Luna'
   end
-  object ComboBox1: TComboBox
+  object cbProveedorPais: TComboBox
     Left = 155
-    Top = 244
+    Top = 208
     Width = 219
-    Height = 24
+    Height = 26
+    Style = csDropDownList
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -13
+    Font.Height = -15
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
     TabOrder = 4
+    StyleElements = [seFont, seBorder]
+    OnChange = cbProveedorPaisChange
   end
-  object ComboBox2: TComboBox
+  object cbProveedorDepartamento: TComboBox
     Left = 155
-    Top = 214
-    Width = 219
-    Height = 24
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 5
-  end
-  object ComboBox3: TComboBox
-    Left = 155
-    Top = 184
-    Width = 219
-    Height = 24
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 6
-  end
-  object Edit4: TEdit
-    Left = 155
-    Top = 312
+    Top = 238
     Width = 219
     Height = 26
+    Style = csDropDownList
+    Enabled = False
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -15
     Font.Name = 'Tahoma'
     Font.Style = []
-    NumbersOnly = True
     ParentFont = False
-    TabOrder = 7
+    TabOrder = 5
+    StyleElements = [seFont, seBorder]
+    OnChange = cbProveedorDepartamentoChange
+    Items.Strings = (
+      'Prueba1'
+      'Prueba2'
+      'Prueba3')
   end
-  object Edit5: TEdit
+  object cbProveedorMunicipio: TComboBox
     Left = 155
-    Top = 280
+    Top = 270
+    Width = 219
+    Height = 26
+    Style = csDropDownList
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 6
+    StyleElements = [seFont, seBorder]
+    OnChange = cbProveedorMunicipioChange
+    Items.Strings = (
+      'Prueba1'
+      'Prueba2'
+      'Prueba3')
+  end
+  object edProveedorCorreo: TEdit
+    Left = 155
+    Top = 304
     Width = 326
     Height = 26
     Font.Charset = DEFAULT_CHARSET
@@ -324,11 +324,12 @@ object fmProveedores: TfmProveedores
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 7
+    StyleElements = [seFont, seBorder]
   end
-  object Edit6: TEdit
+  object edProveedorTelefono: TEdit
     Left = 155
-    Top = 347
+    Top = 336
     Width = 219
     Height = 26
     Font.Charset = DEFAULT_CHARSET
@@ -337,38 +338,33 @@ object fmProveedores: TfmProveedores
     Font.Name = 'Tahoma'
     Font.Style = []
     NumbersOnly = True
+    ParentFont = False
+    TabOrder = 8
+    StyleElements = [seFont, seBorder]
+  end
+  object edProveedorContacto: TEdit
+    Left = 155
+    Top = 400
+    Width = 326
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentFont = False
     TabOrder = 9
+    StyleElements = [seFont, seBorder]
   end
-  object Edit3: TEdit
+  object cbEstadoProveedores: TCheckBox
     Left = 155
-    Top = 379
-    Width = 219
+    Top = 368
+    Width = 110
     Height = 26
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    NumbersOnly = True
-    ParentFont = False
+    Caption = 'Activo'
     TabOrder = 10
   end
-  object Edit7: TEdit
-    Left = 155
-    Top = 411
-    Width = 219
-    Height = 26
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    NumbersOnly = True
-    ParentFont = False
-    TabOrder = 11
-  end
-  object ImagProveedoreslLista: TImageList
+  object ImagLista: TImageList
     Height = 45
     Width = 45
     Left = 576
@@ -2473,7 +2469,7 @@ object fmProveedores: TfmProveedores
       FFFFFFFFFFFFF000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000
       00000000000000000000000000000000000000000000}
   end
-  object MainMenu1: TMainMenu
+  object Menu: TMainMenu
     Left = 472
     Top = 8
     object Menu1: TMenuItem
@@ -2492,9 +2488,6 @@ object fmProveedores: TfmProveedores
       end
       object Cancelar1: TMenuItem
         Caption = 'Cancelar'
-      end
-      object Borrar1: TMenuItem
-        Caption = 'Borrar'
       end
       object N1: TMenuItem
         Caption = '-'
@@ -2521,5 +2514,25 @@ object fmProveedores: TfmProveedores
         Caption = 'Terceros'
       end
     end
+  end
+  object QueryFiltroUbicacion: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    Params = <>
+    Left = 840
+    Top = 8
+  end
+  object QueryGuardado: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.dSclientes
+    Params = <>
+    Left = 664
+    Top = 8
+  end
+  object QueryUbicacion: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.da2UbicacionGeo03
+    Params = <>
+    Left = 752
+    Top = 8
   end
 end

@@ -1,12 +1,9 @@
 ﻿[]
-Coordinates=365,111,80,58
+Coordinates=237,1,84,36
 Visible=True
 
 [ActionToolBar1]
 Coordinates=96,1,103,36
-
-[Ciudad1]
-Coordinates=27,77,62,36
 
 [btOrdenarClientes]
 Coordinates=365,1,119,36
@@ -37,9 +34,6 @@ Coordinates=96,56,77,36
 
 [edBuscarCliente]
 Coordinates=0,0,44,58
-
-[btInformeClientes]
-Coordinates=237,1,84,36
 
 [btSalirBuscarClientes]
 Coordinates=237,111,84,36

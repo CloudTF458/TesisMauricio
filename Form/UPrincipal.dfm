@@ -2,7 +2,7 @@ object fmPrincipal: TfmPrincipal
   Left = 449
   Top = 187
   Caption = 'Proyecto Tesis de Grado'
-  ClientHeight = 662
+  ClientHeight = 682
   ClientWidth = 1099
   Color = clBtnFace
   DragMode = dmAutomatic
@@ -18,10 +18,12 @@ object fmPrincipal: TfmPrincipal
   TextHeight = 13
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 624
+    Top = 644
     Width = 1099
     Height = 38
     Panels = <>
+    ExplicitTop = 620
+    ExplicitWidth = 1097
   end
   object ToolBar1: TToolBar
     Left = 0
@@ -41,6 +43,7 @@ object fmPrincipal: TfmPrincipal
     ShowCaptions = True
     TabOrder = 1
     StyleName = 'Luna'
+    ExplicitWidth = 1097
     object btPrincipalClientes: TToolButton
       Left = 0
       Top = 0
@@ -82,57 +85,6 @@ object fmPrincipal: TfmPrincipal
       Caption = 'Salir'
       ImageIndex = 5
       OnClick = btPrincipalSalirClick
-    end
-  end
-  object MenuPrincipal: TMainMenu
-    Left = 864
-    Top = 16
-    object Menu11: TMenuItem
-      Caption = 'Administrativo'
-      object Configuracion1: TMenuItem
-        Caption = 'Clientes'
-        OnClick = Configuracion1Click
-      end
-      object Opciones1: TMenuItem
-        Caption = 'Proveedores'
-      end
-      object cnicos1: TMenuItem
-        Caption = 'T'#233'cnicos'
-      end
-      object N1: TMenuItem
-        Caption = '-'
-      end
-      object Salir1: TMenuItem
-        Caption = 'Salir'
-        OnClick = Salir1Click
-      end
-    end
-    object Menu21: TMenuItem
-      Caption = 'Productos'
-      object Inventario1: TMenuItem
-        Caption = 'Inventario'
-      end
-    end
-    object Menu31: TMenuItem
-      Caption = 'Transacciones'
-      object Contratos1: TMenuItem
-        Caption = 'Contratos'
-      end
-      object GestiondeAlquiles1: TMenuItem
-        Caption = 'Gestion de Alquiles'
-      end
-    end
-    object Menu41: TMenuItem
-      Caption = 'Configuraci'#243'n'
-      object Acercade1: TMenuItem
-        Caption = 'Acerca de..'
-      end
-    end
-    object Reportes1: TMenuItem
-      Caption = 'Reportes'
-      object Detalle1: TMenuItem
-        Caption = 'Resumen de Alquileres'
-      end
     end
   end
   object ImagPrincipalLista: TImageList
@@ -3869,5 +3821,56 @@ object fmPrincipal: TfmPrincipal
       FFFFFFFFFFFFFFFFFFFFFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000000000000000000000000000
       000000000000}
+  end
+  object MenuPrincipal: TMainMenu
+    Left = 864
+    Top = 16
+    object Menu11: TMenuItem
+      Caption = 'Administrativo'
+      object Configuracion1: TMenuItem
+        Caption = 'Clientes'
+        OnClick = Configuracion1Click
+      end
+      object Opciones1: TMenuItem
+        Caption = 'Proveedores'
+      end
+      object cnicos1: TMenuItem
+        Caption = 'T'#233'cnicos'
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
+      object Salir1: TMenuItem
+        Caption = 'Salir'
+        OnClick = Salir1Click
+      end
+    end
+    object Menu21: TMenuItem
+      Caption = 'Productos'
+      object Inventario1: TMenuItem
+        Caption = 'Inventario'
+      end
+    end
+    object Menu31: TMenuItem
+      Caption = 'Transacciones'
+      object Contratos1: TMenuItem
+        Caption = 'Contratos'
+      end
+      object GestiondeAlquiles1: TMenuItem
+        Caption = 'Gestion de Alquiles'
+      end
+    end
+    object Menu41: TMenuItem
+      Caption = 'Configuraci'#243'n'
+      object Acercade1: TMenuItem
+        Caption = 'Acerca de..'
+      end
+    end
+    object Reportes1: TMenuItem
+      Caption = 'Reportes'
+      object Detalle1: TMenuItem
+        Caption = 'Resumen de Alquileres'
+      end
+    end
   end
 end

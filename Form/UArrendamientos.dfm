@@ -1,85 +1,352 @@
 object fmArrendamientos: TfmArrendamientos
-  Left = 225
-  Top = 145
-  BorderStyle = bsSingle
-  Caption = 'Administracion de Arrendamientos'
-  ClientHeight = 736
-  ClientWidth = 1488
+  Left = 449
+  Top = 208
+  Caption = 'Arrendamientos'
+  ClientHeight = 629
+  ClientWidth = 1107
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Menu = MainMenu1
+  Menu = Menu
   Position = poDesigned
-  WindowState = wsMaximized
   StyleName = 'Luna'
+  OnCreate = FormCreate
   TextHeight = 15
+  object Label6: TLabel
+    Left = 4
+    Top = 84
+    Width = 147
+    Height = 16
+    Caption = 'Duraci'#243'n del Contrato:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 4
+    Top = 116
+    Width = 115
+    Height = 16
+    Caption = 'Deposito Destino:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 404
+    Top = 84
+    Width = 49
+    Height = 16
+    Caption = 'Cliente:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 404
+    Top = 116
+    Width = 53
+    Height = 16
+    Caption = 'Tecnico:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 716
+    Top = 82
+    Width = 86
+    Height = 16
+    Caption = 'Documento #'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 716
+    Top = 114
+    Width = 46
+    Height = 16
+    Caption = 'Fecha: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 716
+    Top = 152
+    Width = 46
+    Height = 16
+    Caption = 'Costo: '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object cbDuracion: TComboBox
+    Left = 159
+    Top = 81
+    Width = 219
+    Height = 26
+    Style = csDropDownList
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 0
+    Text = 'Por Hora'
+    StyleElements = [seFont, seBorder]
+    Items.Strings = (
+      'Por Hora'
+      'Diario'
+      'Semanal'
+      'Mensual'
+      'Trimestral'
+      'Semestral'
+      'Anual')
+  end
+  object cbDeposito: TComboBox
+    Left = 159
+    Top = 113
+    Width = 219
+    Height = 26
+    Style = csDropDownList
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    StyleElements = [seFont, seBorder]
+    Items.Strings = (
+      'Por Hora'
+      'Diario'
+      'Semanal'
+      'Mensual'
+      'Trimestral'
+      'Semestral'
+      'Anual')
+  end
+  object cbCliente: TComboBox
+    Left = 471
+    Top = 81
+    Width = 219
+    Height = 26
+    Style = csDropDownList
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ItemIndex = 0
+    ParentFont = False
+    TabOrder = 2
+    Text = 'Por Hora'
+    StyleElements = [seFont, seBorder]
+    Items.Strings = (
+      'Por Hora'
+      'Diario'
+      'Semanal'
+      'Mensual'
+      'Trimestral'
+      'Semestral'
+      'Anual')
+  end
+  object cbTecnico: TComboBox
+    Left = 471
+    Top = 113
+    Width = 219
+    Height = 26
+    Style = csDropDownList
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    StyleElements = [seFont, seBorder]
+    Items.Strings = (
+      'Por Hora'
+      'Diario'
+      'Semanal'
+      'Mensual'
+      'Trimestral'
+      'Semestral'
+      'Anual')
+  end
+  object TablaBusqueda: TDBGrid
+    Left = 0
+    Top = 204
+    Width = 1107
+    Height = 425
+    DataSource = dQueryTabla
+    TabOrder = 5
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    OnKeyPress = TablaBusquedaKeyPress
+  end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 1488
+    Width = 1107
     Height = 67
     AutoSize = True
     ButtonHeight = 67
-    ButtonWidth = 58
+    ButtonWidth = 53
     Caption = 'tbClientes'
-    Images = ImagArrendamientosLista
+    Images = ImagLista
     ShowCaptions = True
-    TabOrder = 0
-    ExplicitWidth = 1486
-    object btBuscarClientes: TToolButton
+    TabOrder = 4
+    ExplicitWidth = 1105
+    object btAgregar: TToolButton
       Left = 0
-      Top = 0
-      Caption = 'Buscar'
-      ImageIndex = 0
-    end
-    object ToolButton1: TToolButton
-      Left = 58
       Top = 0
       Caption = 'Agregar'
       ImageIndex = 1
+      OnClick = btAgregarClick
     end
-    object ToolButton2: TToolButton
-      Left = 116
-      Top = 0
-      Caption = 'Modificar'
-      ImageIndex = 2
-    end
-    object ToolButton3: TToolButton
-      Left = 174
+    object btGuardar: TToolButton
+      Left = 53
       Top = 0
       Caption = 'Guardar'
       ImageIndex = 3
+      OnClick = btGuardarClick
     end
-    object ToolButton4: TToolButton
-      Left = 232
+    object btCancelar: TToolButton
+      Left = 106
       Top = 0
       Caption = 'Cancelar'
       ImageIndex = 4
+      OnClick = btCancelarClick
     end
-    object ToolButton5: TToolButton
-      Left = 290
-      Top = 0
-      Caption = 'Borrar'
-      ImageIndex = 5
-    end
-    object ToolButton6: TToolButton
-      Left = 348
+    object btSalir: TToolButton
+      Left = 159
       Top = 0
       Caption = 'Salir'
       ImageIndex = 6
-      OnClick = ToolButton6Click
+      OnClick = btSalirClick
     end
   end
-  object ImagArrendamientosLista: TImageList
+  object btInventario: TButton
+    Left = 0
+    Top = 152
+    Width = 193
+    Height = 46
+    Caption = 'Agregar Producto'
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ImageIndex = 0
+    Images = ImagLista
+    ParentFont = False
+    TabOrder = 6
+    OnClick = btInventarioClick
+  end
+  object edDocumento: TEdit
+    Left = 808
+    Top = 81
+    Width = 219
+    Height = 26
+    Ctl3D = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentCtl3D = False
+    ParentFont = False
+    CanUndoSelText = True
+    TabOrder = 7
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object edCosto: TEdit
+    Left = 808
+    Top = 145
+    Width = 219
+    Height = 26
+    Ctl3D = True
+    Enabled = False
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentCtl3D = False
+    ParentFont = False
+    CanUndoSelText = True
+    TabOrder = 8
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object StringGrid1: TStringGrid
+    Left = 640
+    Top = 24
+    Width = 1
+    Height = 17
+    TabOrder = 9
+  end
+  object dtFecha: TDateTimePicker
+    Left = 808
+    Top = 113
+    Width = 219
+    Height = 24
+    Date = 45587.000000000000000000
+    Time = 0.584658622683491600
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 10
+  end
+  object ImagLista: TImageList
+    AllocBy = 0
     Height = 45
     Width = 45
-    Left = 592
-    Top = 8
+    Left = 544
+    Top = 16
     Bitmap = {
-      494C01010700180004002D002D00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010700180000002D002D00FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000B40000005A000000010020000000000020FD
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -2178,28 +2445,19 @@ object fmArrendamientos: TfmArrendamientos
       FFFFFFFFFFFFF000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000
       00000000000000000000000000000000000000000000}
   end
-  object MainMenu1: TMainMenu
-    Left = 472
-    Top = 8
+  object Menu: TMainMenu
+    Left = 616
+    Top = 16
     object Menu1: TMenuItem
       Caption = 'Menu'
-      object Buscar1: TMenuItem
-        Caption = 'Buscar'
-      end
       object Agregar1: TMenuItem
         Caption = 'Agregar'
-      end
-      object Modificar1: TMenuItem
-        Caption = 'Modificar'
       end
       object Guardar1: TMenuItem
         Caption = 'Guardar'
       end
       object Cancelar1: TMenuItem
         Caption = 'Cancelar'
-      end
-      object Borrar1: TMenuItem
-        Caption = 'Borrar'
       end
       object N1: TMenuItem
         Caption = '-'
@@ -2226,5 +2484,24 @@ object fmArrendamientos: TfmArrendamientos
         Caption = 'Terceros'
       end
     end
+  end
+  object QueryTabla: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.dSclientes
+    Params = <>
+    Left = 824
+    Top = 16
+  end
+  object dQueryTabla: TDataSource
+    DataSet = QueryTabla
+    Left = 928
+    Top = 8
+  end
+  object QueryArrendamiento: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.dSclientes
+    Params = <>
+    Left = 712
+    Top = 16
   end
 end

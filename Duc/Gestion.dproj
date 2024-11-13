@@ -143,11 +143,27 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Form\UBuscarInventarios.pas">
-            <Form>fmBuscarProductos</Form>
+            <Form>fmBuscarInventario</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Form\UModificarInventarios.pas">
-            <Form>fmModificarInventarios</Form>
+            <Form>fmModificarInventario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UBuscarProveedores.pas">
+            <Form>fmBuscarProveedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UModificarProveedores.pas">
+            <Form>fmModificarProveedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UBuscarTecnicos.pas">
+            <Form>fmBuscarTecnicos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UModificarTecnicos.pas">
+            <Form>fmModificarTecnicos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

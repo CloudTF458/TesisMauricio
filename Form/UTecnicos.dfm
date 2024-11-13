@@ -1,77 +1,272 @@
 object fmTecnicos: TfmTecnicos
-  Left = 715
-  Top = 312
+  Left = 449
+  Top = 208
+  BorderStyle = bsSizeToolWin
   Caption = 'Tecnicos'
-  ClientHeight = 445
-  ClientWidth = 626
+  ClientHeight = 615
+  ClientWidth = 1101
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Menu = MainMenu1
+  Menu = Menu
   Position = poDesigned
   StyleName = 'Luna'
+  OnCreate = FormCreate
   TextHeight = 15
+  object Label1: TLabel
+    Left = 0
+    Top = 125
+    Width = 129
+    Height = 16
+    Caption = 'Nombre del T'#233'cnico:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 0
+    Top = 93
+    Width = 29
+    Height = 16
+    Caption = 'RUT:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 0
+    Top = 155
+    Width = 64
+    Height = 16
+    Caption = 'Direcci'#243'n:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 0
+    Top = 239
+    Width = 43
+    Height = 16
+    Caption = 'E-mail:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 0
+    Top = 274
+    Width = 60
+    Height = 16
+    Caption = 'Telefono:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label10: TLabel
+    Left = 0
+    Top = 311
+    Width = 49
+    Height = 16
+    Caption = 'Estado:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 0
+    Top = 207
+    Width = 61
+    Height = 16
+    Caption = 'Comision:'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 626
+    Width = 1101
     Height = 67
     AutoSize = True
     ButtonHeight = 67
     ButtonWidth = 58
     Caption = 'tbClientes'
-    Images = ImagTecnicosLista
+    Images = ImagLista
     ShowCaptions = True
     TabOrder = 0
-    ExplicitWidth = 624
-    object btBuscarClientes: TToolButton
+    object btBuscar: TToolButton
       Left = 0
       Top = 0
       Caption = 'Buscar'
       ImageIndex = 0
+      OnClick = btBuscarClick
     end
-    object ToolButton1: TToolButton
+    object btAgregar: TToolButton
       Left = 58
       Top = 0
       Caption = 'Agregar'
       ImageIndex = 1
+      OnClick = btAgregarClick
     end
-    object ToolButton2: TToolButton
+    object btModificar: TToolButton
       Left = 116
       Top = 0
       Caption = 'Modificar'
       ImageIndex = 2
+      OnClick = btModificarClick
     end
-    object ToolButton3: TToolButton
+    object btGuardar: TToolButton
       Left = 174
       Top = 0
       Caption = 'Guardar'
       ImageIndex = 3
+      OnClick = btGuardarClick
     end
-    object ToolButton4: TToolButton
+    object btCancelar: TToolButton
       Left = 232
       Top = 0
       Caption = 'Cancelar'
       ImageIndex = 4
+      OnClick = btCancelarClick
     end
-    object ToolButton5: TToolButton
+    object btSalir: TToolButton
       Left = 290
-      Top = 0
-      Caption = 'Borrar'
-      ImageIndex = 5
-    end
-    object ToolButton6: TToolButton
-      Left = 348
       Top = 0
       Caption = 'Salir'
       ImageIndex = 6
-      OnClick = ToolButton6Click
+      OnClick = btSalirClick
     end
   end
-  object ImagTecnicosLista: TImageList
+  object mmDireccion: TMemo
+    Left = 143
+    Top = 152
+    Width = 438
+    Height = 50
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ImeName = 'Latin American'
+    Lines.Strings = (
+      '')
+    ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object edNombre: TEdit
+    Left = 143
+    Top = 120
+    Width = 726
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object edRut: TEdit
+    Left = 143
+    Top = 88
+    Width = 219
+    Height = 26
+    Ctl3D = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentCtl3D = False
+    ParentFont = False
+    CanUndoSelText = True
+    TabOrder = 3
+    StyleElements = [seFont, seBorder]
+    StyleName = 'Luna'
+  end
+  object edCorreo: TEdit
+    Left = 143
+    Top = 240
+    Width = 326
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 4
+    StyleElements = [seFont, seBorder]
+  end
+  object edTelefono: TEdit
+    Left = 143
+    Top = 272
+    Width = 219
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    NumbersOnly = True
+    ParentFont = False
+    TabOrder = 5
+    StyleElements = [seFont, seBorder]
+  end
+  object cbEstado: TCheckBox
+    Left = 143
+    Top = 304
+    Width = 110
+    Height = 26
+    Caption = 'Activo'
+    TabOrder = 6
+  end
+  object edComision: TEdit
+    Left = 143
+    Top = 208
+    Width = 326
+    Height = 26
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 7
+    StyleElements = [seFont, seBorder]
+  end
+  object ImagLista: TImageList
     Height = 45
     Width = 45
     Left = 560
@@ -2176,7 +2371,7 @@ object fmTecnicos: TfmTecnicos
       FFFFFFFFFFFFF000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000
       00000000000000000000000000000000000000000000}
   end
-  object MainMenu1: TMainMenu
+  object Menu: TMainMenu
     Left = 472
     Top = 8
     object Menu1: TMenuItem
@@ -2195,9 +2390,6 @@ object fmTecnicos: TfmTecnicos
       end
       object Cancelar1: TMenuItem
         Caption = 'Cancelar'
-      end
-      object Borrar1: TMenuItem
-        Caption = 'Borrar'
       end
       object N1: TMenuItem
         Caption = '-'
@@ -2224,5 +2416,19 @@ object fmTecnicos: TfmTecnicos
         Caption = 'Terceros'
       end
     end
+  end
+  object QueryGuardado: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.dSclientes
+    Params = <>
+    Left = 664
+    Top = 8
+  end
+  object QueryUbicacion: TDBISAMQuery
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.da2UbicacionGeo03
+    Params = <>
+    Left = 752
+    Top = 8
   end
 end

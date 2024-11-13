@@ -1,4 +1,4 @@
-object fmModificarInventarios: TfmModificarInventarios
+object fmModificarInventario: TfmModificarInventario
   Left = 449
   Top = 187
   BorderStyle = bsToolWindow
@@ -13,6 +13,7 @@ object fmModificarInventarios: TfmModificarInventarios
   Font.Style = []
   Position = poDesigned
   StyleName = 'Luna'
+  OnCreate = FormCreate
   TextHeight = 15
   object ToolBar1: TToolBar
     Left = 0
@@ -28,52 +29,30 @@ object fmModificarInventarios: TfmModificarInventarios
     Font.Height = -11
     Font.Name = 'Segoe UI'
     Font.Style = []
-    Images = ImagModificarInventario
+    Images = ImagBuscarLista
     ParentFont = False
     ShowCaptions = True
     TabOrder = 0
-    ExplicitWidth = 1118
-    object btOrdenarInventarios: TToolButton
+    ExplicitWidth = 1124
+    object btOrdenar: TToolButton
       Left = 0
       Top = 0
       Caption = 'Ordenar por:'
-      DropdownMenu = MenuOrdenarLista
       ImageIndex = 0
       Style = tbsDropDown
     end
-    object btSalirModificarInventario: TToolButton
+    object btSalirModificar: TToolButton
       Left = 95
       Top = 0
       Caption = 'Salir'
       ImageIndex = 2
-      OnClick = btSalirModificarInventarioClick
+      OnClick = btSalirModificarClick
     end
   end
-  object ActionToolBar1: TActionToolBar
-    Left = 0
-    Top = 53
-    Width = 1130
-    Height = 36
-    Caption = 'ActionToolBar1'
-    Color = clMenuBar
-    ColorMap.DisabledFontColor = 10461087
-    ColorMap.HighlightColor = clWhite
-    ColorMap.BtnSelectedFont = clBlack
-    ColorMap.UnusedColor = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clBlack
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
-    Spacing = 0
-    StyleName = 'Luna'
-    ExplicitWidth = 1118
-  end
-  object edModificarInventario: TEdit
-    Left = 120
-    Top = 59
-    Width = 1002
+  object edModificar: TEdit
+    Left = 123
+    Top = 61
+    Width = 985
     Height = 28
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -81,97 +60,43 @@ object fmModificarInventarios: TfmModificarInventarios
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 1
     StyleName = 'Luna'
+    OnChange = edModificarChange
   end
-  object lbModificarInventario: TLinkLabel
+  object lbModificar: TLinkLabel
     Left = 8
     Top = 62
-    Width = 56
+    Width = 62
     Height = 21
-    Caption = 'C'#243'digo :'
+    Caption = 'Nombre :'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13
     Font.Name = 'Segoe UI'
     Font.Style = [fsBold]
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 2
   end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 697
-    Width = 1130
-    Height = 19
-    Panels = <
-      item
-        BiDiMode = bdRightToLeft
-        ParentBiDiMode = False
-        Text = 'Registros '
-        Width = 60
-      end>
-    ExplicitTop = 682
-    ExplicitWidth = 1118
-  end
-  object StringGrid1: TStringGrid
-    AlignWithMargins = True
-    Left = 8
+  object TablaBusqueda: TDBGrid
+    Left = 2
     Top = 95
-    Width = 1114
-    Height = 586
-    BevelOuter = bvNone
-    BorderStyle = bsNone
-    DrawingStyle = gdsClassic
-    FixedCols = 0
-    RowCount = 26
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    Options = [goFixedHorzLine, goVertLine, goColSizing, goRowSelect, goFixedColClick, goFixedRowDefAlign]
-    ParentFont = False
-    ScrollBars = ssNone
-    TabOrder = 5
-    StyleName = 'Luna'
-    ColWidths = (
-      194
-      202
-      169
-      216
-      350)
-    RowHeights = (
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      30
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24)
+    Width = 1112
+    Height = 578
+    DataSource = dQueryModificar
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    OnDblClick = TablaBusquedaDblClick
   end
-  object ImagModificarInventario: TImageList
+  object ImagBuscarLista: TImageList
     Height = 25
     Width = 25
-    Left = 280
+    Left = 328
     Bitmap = {
       494C010103000800040019001900FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000640000001900000001002000000000001027
@@ -505,32 +430,33 @@ object fmModificarInventarios: TfmModificarInventarios
       FFFFFFF0001FFFFFFFE000000000000000000000000000000000000000000000
       000000000000}
   end
-  object MenuOrdenarLista: TPopupMenu
+  object QueryModificar: TDBISAMQuery
+    DatabaseName = 'a2Database'
+    EngineVersion = '4.43 Build 1'
+    DataSource = moduloDatos.dSclientes
+    SQL.Strings = (
+      '')
+    Params = <>
+    Left = 696
+  end
+  object dQueryModificar: TDataSource
+    DataSet = QueryModificar
+    Left = 832
+  end
+  object MenuOrdenar: TPopupMenu
     OwnerDraw = True
-    Left = 416
+    Left = 464
     object Nombre1: TMenuItem
-      Caption = 'C'#243'digo'
+      Caption = 'Nombre'
       OnClick = Nombre1Click
     end
     object Documento1: TMenuItem
-      Caption = 'Descripci'#243'n'
+      Caption = 'C'#243'digo'
       OnClick = Documento1Click
     end
-    object Contacto1: TMenuItem
-      Caption = 'Referencia'
-      OnClick = Contacto1Click
-    end
-    object Departamento1: TMenuItem
-      Caption = 'Departamento'
-      OnClick = Departamento1Click
-    end
-    object Ciudad1: TMenuItem
-      Caption = 'Modelo'
-      OnClick = Ciudad1Click
-    end
-    object Marca1: TMenuItem
-      Caption = 'Marca'
-      OnClick = Marca1Click
+    object Deposito1: TMenuItem
+      Caption = 'Deposito'
+      OnClick = Deposito1Click
     end
   end
 end

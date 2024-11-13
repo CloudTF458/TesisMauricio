@@ -4,44 +4,31 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, System.ImageList,
-  Vcl.ImgList, Vcl.Grids, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.ActnMan,
-  Vcl.ActnCtrls, Vcl.ToolWin;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ComCtrls, Vcl.ToolWin,
+  System.ImageList, Vcl.ImgList, Vcl.Menus, dbisamtb, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Grids, Vcl.DBGrids, uData;
 
 type
-  TfmBuscarProductos = class(TForm)
+  TfmBuscarInventario = class(TForm)
     ToolBar1: TToolBar;
-    btOrdenarProductos: TToolButton;
-    btInformeProducto: TToolButton;
-    btSalirBuscarProductos: TToolButton;
-    ActionToolBar1: TActionToolBar;
-    edBuscarProductos: TEdit;
-    lbBuscarDescripcioninv: TLinkLabel;
-    StatusBar1: TStatusBar;
-    StringGrid1: TStringGrid;
-    ImagBuscarInventarioLista: TImageList;
-    MenuOrdenarInventario: TPopupMenu;
+    btOrdenar: TToolButton;
+    btSalirBuscar: TToolButton;
+    ImagBuscarLista: TImageList;
+    MenuOrdenar: TPopupMenu;
     Nombre1: TMenuItem;
     Documento1: TMenuItem;
-    Contacto1: TMenuItem;
-    Ciudad1: TMenuItem;
-    MenuInformeInventario: TPopupMenu;
-    EstadodeCuenta1: TMenuItem;
-    Ventas1: TMenuItem;
-    ransaccionesComerciales1: TMenuItem;
-    Modelo1: TMenuItem;
-    Marca1: TMenuItem;
-    Proveedores1: TMenuItem;
-    Operaciones1: TMenuItem;
-    procedure btSalirBuscarProductosClick(Sender: TObject);
+    Deposito1: TMenuItem;
+    QueryBusqueda: TDBISAMQuery;
+    dQueryBusqueda: TDataSource;
+    edBuscar: TEdit;
+    lbBuscarDescripcion: TLinkLabel;
+    TablaBusqueda: TDBGrid;
     procedure Nombre1Click(Sender: TObject);
     procedure Documento1Click(Sender: TObject);
-    procedure Contacto1Click(Sender: TObject);
-    procedure Ciudad1Click(Sender: TObject);
-    procedure Modelo1Click(Sender: TObject);
-    procedure Marca1Click(Sender: TObject);
-    procedure StringGrid1Click(Sender: TObject);
-    procedure edBuscarProductosClick(Sender: TObject);
+    procedure Deposito1Click(Sender: TObject);
+    procedure btSalirBuscarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure edBuscarChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -49,67 +36,278 @@ type
   end;
 
 var
-  fmBuscarProductos: TfmBuscarProductos;
+  fmBuscarInventario: TfmBuscarInventario;
 
 implementation
 
 {$R *.dfm}
 
-procedure TfmBuscarProductos.btSalirBuscarProductosClick(Sender: TObject);
+procedure TfmBuscarInventario.btSalirBuscarClick(Sender: TObject);
 begin
 Close;
 end;
 
-procedure TfmBuscarProductos.Ciudad1Click(Sender: TObject);
+procedure TfmBuscarInventario.Deposito1Click(Sender: TObject);
+var
+basePath: string;
 begin
-lbBuscarDescripcioninv.Caption := 'Departamento :';
-edBuscarProductos.Text := '';
-edBuscarProductos.SetFocus;
+  basePath := uData.moduloDatos.a2Database.Directory;
+  QueryBusqueda.Close;
+lbBuscarDescripcion.Caption := 'Deposito :';
+edBuscar.Text := '';
+edBuscar.SetFocus;
+
+  QueryBusqueda.SQL.Text :=
+    'SELECT ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO as Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+        QueryBusqueda.Open;
 end;
 
-procedure TfmBuscarProductos.Contacto1Click(Sender: TObject);
+procedure TfmBuscarInventario.Documento1Click(Sender: TObject);
+var
+basePath: string;
 begin
-lbBuscarDescripcioninv.Caption := 'Referencia :';
-edBuscarProductos.Text := '';
-edBuscarProductos.SetFocus;
+basePath := uData.moduloDatos.a2Database.Directory;
+QueryBusqueda.Close;
+lbBuscarDescripcion.Caption := 'Código :';
+edBuscar.Text := '';
+edBuscar.SetFocus;
+
+  QueryBusqueda.SQL.Text :=
+    'SELECT ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO as Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+        QueryBusqueda.Open;
 end;
 
-procedure TfmBuscarProductos.Documento1Click(Sender: TObject);
+procedure TfmBuscarInventario.edBuscarChange(Sender: TObject);
+var
+  basePath, filterText: string;
 begin
-lbBuscarDescripcioninv.Caption := 'Descripción :';
-edBuscarProductos.Text := '';
-edBuscarProductos.SetFocus;
+  basePath := uData.moduloDatos.a2Database.Directory;
+  filterText := Trim(edBuscar.Text); // Elimina espacios en blanco
+
+  QueryBusqueda.Close;
+
+  // Verifica que haya texto para filtrar
+  if filterText <> '' then
+  begin
+    if lbBuscarDescripcion.Caption = 'Nombre :' then
+    begin
+      QueryBusqueda.SQL.Text :=
+          'SELECT ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO AS Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'WHERE Sinventario.FI_DESCRIPCION LIKE ''%' + filterText + '%'' ' + // Filtrar por Nombre
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+    end;
+
+    if lbBuscarDescripcion.Caption = 'Desposito :' then
+    begin
+      QueryBusqueda.SQL.Text :=
+          'SELECT ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO AS Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'WHERE Sdepositos.FDP_DESCRIPCION LIKE ''%' + filterText + '%'' ' + // Filtrar por Nombre
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+    end;
+
+    if lbBuscarDescripcion.Caption = 'Rut :' then
+    begin
+      QueryBusqueda.SQL.Text :=
+        'SELECT ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO AS Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'WHERE Sinventario.FI_CODIGO LIKE ''%' + filterText + '%'' ' + // Filtrar por Nombre
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+    end;
+  end else
+  begin
+      if lbBuscarDescripcion.Caption = 'Nombre :' then
+    begin
+      QueryBusqueda.SQL.Text :=
+      'SELECT ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO AS Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+    end;
+
+    if lbBuscarDescripcion.Caption = 'Deposito :' then
+    begin
+      QueryBusqueda.SQL.Text :=
+    'SELECT ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO as Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+    end;
+
+    if lbBuscarDescripcion.Caption = 'Rut :' then
+    begin
+      QueryBusqueda.SQL.Text :=
+          'SELECT ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO as Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+    end;
+  end;
+  QueryBusqueda.Open;
+
 end;
 
-procedure TfmBuscarProductos.edBuscarProductosClick(Sender: TObject);
+procedure TfmBuscarInventario.FormCreate(Sender: TObject);
+var
+basePath: string;
 begin
-btInformeProducto.Enabled := False;
+  basePath := uData.moduloDatos.a2Database.Directory;
+  QueryBusqueda.Close;
+  QueryBusqueda.SQL.Text :=
+    'SELECT ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO AS Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+QueryBusqueda.Open;
 end;
 
-procedure TfmBuscarProductos.Marca1Click(Sender: TObject);
+procedure TfmBuscarInventario.Nombre1Click(Sender: TObject);
+var
+basePath: string;
 begin
-lbBuscarDescripcioninv.Caption := 'Marca :';
-edBuscarProductos.Text := '';
-edBuscarProductos.SetFocus;
-end;
+basePath := uData.moduloDatos.a2Database.Directory;
+QueryBusqueda.Close;
+lbBuscarDescripcion.Caption := 'Nombre :';
+edBuscar.Text := '' ;
+edBuscar.SetFocus;
 
-procedure TfmBuscarProductos.Modelo1Click(Sender: TObject);
-begin
-lbBuscarDescripcioninv.Caption := 'Modelo :';
-edBuscarProductos.Text := '' ;
-edBuscarProductos.SetFocus;
-end;
+  QueryBusqueda.SQL.Text :=
+    'SELECT ' +
+        '  Sinventario.FI_DESCRIPCION AS Descripcion, ' +
+        '  Sinventario.FI_CODIGO AS RUT, ' +
+        '  Scategoria.FD_DESCRIPCION AS Categoria, ' +
+        '  Sdepositos.FDP_DESCRIPCION AS Deposito, ' +
+        '  Sinventario.FI_STATUS AS Activo, ' +
+        '  Sinventario.FI_PESOPRODUCTO AS Precio, ' +
+        '  SinvDep.FT_EXISTENCIA AS Existencia ' +
+        'FROM "' + basePath + '\Sinventario.dat" Sinventario ' +
+        'INNER JOIN "' + basePath + '\SinvDep.dat" SinvDep ' +
+        'ON Sinventario.FI_CODIGO = SinvDep.FT_CODIGOPRODUCTO ' +
+        'INNER JOIN "' + basePath + '\Sdepositos.dat" Sdepositos ' +
+        'ON SinvDep.FT_CODIGODEPOSITO = Sdepositos.FDP_CODIGO '+
+        'INNER JOIN "' + basePath + '\Scategoria.dat" Scategoria ' +
+        'ON Sinventario.FI_CATEGORIA = Scategoria.FD_CODIGO ' +
+        'ORDER BY Sinventario.FI_DESCRIPCION ASC';
+QueryBusqueda.Open;
 
-procedure TfmBuscarProductos.Nombre1Click(Sender: TObject);
-begin
-lbBuscarDescripcioninv.Caption := 'Código :';
-edBuscarProductos.Text := '' ;
-edBuscarProductos.SetFocus;
-end;
-
-procedure TfmBuscarProductos.StringGrid1Click(Sender: TObject);
-begin
-btInformeProducto.Enabled := True;
 end;
 
 end.

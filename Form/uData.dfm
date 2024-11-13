@@ -32,7 +32,7 @@ object moduloDatos: TmoduloDatos
     EngineVersion = '4.43 Build 1'
     TableName = 'sempresas'
     Left = 184
-    Top = 56
+    Top = 64
   end
   object Susuarios: TDBISAMTable
     DatabaseName = 'a2Database'

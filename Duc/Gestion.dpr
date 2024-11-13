@@ -14,8 +14,12 @@ uses
   UInventario in '..\Form\UInventario.pas' {fmInventario},
   uData in '..\Form\uData.pas' {moduloDatos: TDataModule},
   UArrendamientos in '..\Form\UArrendamientos.pas' {fmArrendamientos},
-  UBuscarInventarios in '..\Form\UBuscarInventarios.pas' {fmBuscarProductos},
-  UModificarInventarios in '..\Form\UModificarInventarios.pas' {fmModificarInventarios};
+  UBuscarInventarios in '..\Form\UBuscarInventarios.pas' {fmBuscarInventario},
+  UModificarInventarios in '..\Form\UModificarInventarios.pas' {fmModificarInventario},
+  UBuscarProveedores in '..\Form\UBuscarProveedores.pas' {fmBuscarProveedores},
+  UModificarProveedores in '..\Form\UModificarProveedores.pas' {fmModificarProveedores},
+  UBuscarTecnicos in '..\Form\UBuscarTecnicos.pas' {fmBuscarTecnicos},
+  UModificarTecnicos in '..\Form\UModificarTecnicos.pas' {fmModificarTecnicos};
 
 {$R *.res}
 
