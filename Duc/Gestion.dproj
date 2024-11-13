@@ -95,7 +95,6 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <ItemGroup>
@@ -106,32 +105,65 @@
             <Form>fmPrincipal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Form\UDepartamentos.pas">
-            <Form>fmDepartamentos</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\Form\UInventarioa2.pas">
-            <Form>fmInventario</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\Form\UClientesa2.pas">
             <Form>fmClientesa2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Form\Ucuentasxcobrar.pas">
-            <Form>fmcxc</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\Form\UQuery.pas">
-            <Form>Form1</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="..\Form\uAcceso.pas">
-            <Form>frmacceso</Form>
+            <Form>fmAcceso</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Form\UBuscarClientes.pas">
             <Form>fmBuscarClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UModificarClientes.pas">
+            <Form>fmModificarClientes</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UProveedores.pas">
+            <Form>fmProveedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UTecnicos.pas">
+            <Form>fmTecnicos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UInventario.pas">
+            <Form>fmInventario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\uData.pas">
+            <Form>moduloDatos</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Form\UArrendamientos.pas">
+            <Form>fmArrendamientos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UBuscarInventarios.pas">
+            <Form>fmBuscarInventario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UModificarInventarios.pas">
+            <Form>fmModificarInventario</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UBuscarProveedores.pas">
+            <Form>fmBuscarProveedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UModificarProveedores.pas">
+            <Form>fmModificarProveedores</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UBuscarTecnicos.pas">
+            <Form>fmBuscarTecnicos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Form\UModificarTecnicos.pas">
+            <Form>fmModificarTecnicos</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

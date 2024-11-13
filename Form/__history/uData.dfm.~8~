@@ -1,0 +1,54 @@
+object moduloDatos: TmoduloDatos
+  Height = 688
+  Width = 1209
+  object a2Database: TDBISAMDatabase
+    EngineVersion = '4.43 Build 1'
+    DatabaseName = 'a2Database'
+    SessionName = 'Default'
+    Left = 48
+    Top = 136
+  end
+  object Sclientes: TDBISAMTable
+    DatabaseName = 'a2Database'
+    EngineVersion = '4.43 Build 1'
+    TableName = 'Sclientes'
+    Left = 184
+    Top = 136
+  end
+  object dSclientes: TDataSetProvider
+    DataSet = Sclientes
+    Left = 112
+    Top = 136
+  end
+  object Sistema: TDBISAMDatabase
+    EngineVersion = '4.43 Build 1'
+    DatabaseName = 'Sistema'
+    SessionName = 'Default'
+    Left = 72
+    Top = 56
+  end
+  object dsempresas: TDataSource
+    DataSet = sempresas
+    Left = 144
+    Top = 56
+  end
+  object sempresas: TDBISAMTable
+    DatabaseName = 'Sistema'
+    EngineVersion = '4.43 Build 1'
+    TableName = 'sempresas'
+    Left = 208
+    Top = 56
+  end
+  object Susuarios: TDBISAMTable
+    DatabaseName = 'a2Database'
+    EngineVersion = '4.43 Build 1'
+    TableName = 'Susuarios'
+    Left = 184
+    Top = 208
+  end
+  object dSusuarios: TDataSource
+    DataSet = Susuarios
+    Left = 104
+    Top = 216
+  end
+end

@@ -1,0 +1,110 @@
+unit UClientesa2;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.Menus, Vcl.ComCtrls,
+  Vcl.ToolWin, UPrincipal, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls, Data.DB, Vcl.Grids, Vcl.DBGrids, dbisamtb,
+  Vcl.CheckLst, System.ImageList, Vcl.ImgList, UBuscarClientes,
+  UModificarClientes;
+
+type
+  TfmClientesa2 = class(TForm)
+    ToolBar1: TToolBar;
+    btBuscarClientes: TToolButton;
+    ImageList1: TImageList;
+    MainMenu1: TMainMenu;
+    Menu1: TMenuItem;
+    Buscar1: TMenuItem;
+    Agregar1: TMenuItem;
+    Modificar1: TMenuItem;
+    Guardar1: TMenuItem;
+    Borrar1: TMenuItem;
+    N1: TMenuItem;
+    Salir1: TMenuItem;
+    Consultar1: TMenuItem;
+    Configuraciones1: TMenuItem;
+    EstadodeCuenta1: TMenuItem;
+    OperacionesComerciales1: TMenuItem;
+    ProductosComprados1: TMenuItem;
+    erceros1: TMenuItem;
+    ToolButton1: TToolButton;
+    ToolButton2: TToolButton;
+    ToolButton3: TToolButton;
+    ToolButton4: TToolButton;
+    ToolButton5: TToolButton;
+    ToolButton6: TToolButton;
+    Cancelar1: TMenuItem;
+    Edit1: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Edit2: TEdit;
+    Label3: TLabel;
+    Memo1: TMemo;
+    Label4: TLabel;
+    ComboBox1: TComboBox;
+    Label5: TLabel;
+    ComboBox2: TComboBox;
+    Label6: TLabel;
+    ComboBox3: TComboBox;
+    Label7: TLabel;
+    Label8: TLabel;
+    Edit4: TEdit;
+    Edit5: TEdit;
+    Label9: TLabel;
+    Edit6: TEdit;
+    Label10: TLabel;
+    Edit3: TEdit;
+    Label11: TLabel;
+    Edit7: TEdit;
+    procedure btBuscarClientesClick(Sender: TObject);
+    procedure Buscar1Click(Sender: TObject);
+    procedure Salir1Click(Sender: TObject);
+    procedure ToolButton2Click(Sender: TObject);
+    procedure ToolButton6Click(Sender: TObject);
+    procedure Modificar1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  fmClientesa2: TfmClientesa2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfmClientesa2.btBuscarClientesClick(Sender: TObject);
+begin
+fmBuscarClientes.ShowModal ;
+end;
+
+procedure TfmClientesa2.Buscar1Click(Sender: TObject);
+begin
+fmBuscarClientes.ShowModal ;
+end;
+
+procedure TfmClientesa2.Modificar1Click(Sender: TObject);
+begin
+fmModificarClientes.ShowModal;
+end;
+
+procedure TfmClientesa2.Salir1Click(Sender: TObject);
+begin
+Close;
+end;
+
+procedure TfmClientesa2.ToolButton2Click(Sender: TObject);
+begin
+fmModificarClientes.ShowModal ;
+end;
+
+procedure TfmClientesa2.ToolButton6Click(Sender: TObject);
+begin
+Close;
+end;
+
+end.
